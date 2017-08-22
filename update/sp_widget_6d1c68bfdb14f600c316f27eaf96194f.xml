@@ -57,12 +57,22 @@
 		lastUpd.query();
 		lastUpd.next();
 		obj.lastUpd=lastUpd.sys_updated_on.getDisplayValue();
+		// check metrics
+		if (obj.lastUpd == '') {
+			var lastUpd2 = new GlideRecord("x_agsa_promonitor_last_metrics");
+			lastUpd2.addQuery('sid',system[i].split('àààà')[0]);
+			lastUpd2.orderByDesc('sys_updated_on');
+			lastUpd2.query();
+			lastUpd2.next();
+			obj.lastUpd=lastUpd2.sys_updated_on.getDisplayValue();
+		}
 		// Add color depending on delay
-		var dte=lastUpd.sys_updated_on.toString();
+		//var dte=lastUpd.sys_updated_on.toString();
+		var dte=obj.lastUpd.toString();
 		var gdt1=new GlideDateTime();
 		gdt1.setValue(dte);
 		var gdt2=new GlideDateTime();
-		var dur = GlideDateTime.subtract(gdt1, gdt2); // the difference between gdt1 and gdt2  	
+		var dur = GlideDateTime.subtract(gdt1, gdt2);	// the difference between gdt1 and gdt2
 		if (dur.getNumericValue() > 86400000) {
 			obj.value='false';
 		} else { 
@@ -81,7 +91,7 @@
         <sys_created_on>2017-01-20 11:08:51</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>6d1c68bfdb14f600c316f27eaf96194f</sys_id>
-        <sys_mod_count>53</sys_mod_count>
+        <sys_mod_count>59</sys_mod_count>
         <sys_name>System Overview</sys_name>
         <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
         <sys_policy/>
@@ -89,7 +99,7 @@
         <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
         <sys_update_name>sp_widget_6d1c68bfdb14f600c316f27eaf96194f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-08-16 14:18:39</sys_updated_on>
+        <sys_updated_on>2017-08-22 16:08:38</sys_updated_on>
         <template><![CDATA[<link href="c61202770fe32200a09d8bbce1050e0a.cssdbx?" rel="stylesheet" type="text/css" />
 <table class='sstatus' sytle='width:30%;'>
 	<thead>
@@ -118,7 +128,7 @@
 		<td class="sstatus" ng-if='item.severity == "WARNING"' style='background-color:#ecd82c;'><a ng-href="x_agsa_promonitor_alarms_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid.sid={{item.sid}}" target="_blank">{{item.severity}}</a></td>
 		<td class="sstatus" ng-if='item.severity == "INFORMATIONAL"' style='background-color:#3bb3c9;'><a ng-href="x_agsa_promonitor_alarms_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid.sid={{item.sid}}" target="_blank">{{item.severity}}</a></td>
    		<td class="sstatus" ng-if='item.severity == "CLEAR"' style='background-color:#3bc999;'><a ng-href="x_agsa_promonitor_alarms_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid.sid={{item.sid}}" target="_blank">{{item.severity}}</a></td>
-   		<td class="sstatus" ng-if='item.severity == ""' style='background-color:#3bc999;'>NO DATA</td>
+   		<td class="sstatus" ng-if='item.severity == ""' style='background-color:#3bc999;'>NO ALARM</td>
   </tr>
 </table>]]></template>
     </sp_widget>
