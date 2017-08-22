@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_relationship">
+    <sys_relationship action="INSERT_OR_UPDATE">
+        <advanced>false</advanced>
+        <apply_to/>
+        <basic_apply_to>x_agsa_promonitor_operation</basic_apply_to>
+        <basic_query_from>x_agsa_promonitor_alarms</basic_query_from>
+        <insert_callback/>
+        <name>Alarms on CI</name>
+        <query_from/>
+        <query_with><![CDATA[(function refineQuery(current, parent) {
+	current.addQuery('sid.name',parent.cmdb_ci.name);
+	current.addQuery('acknowledge',false);
+})(current, parent);]]></query_with>
+        <reference_field>connectorid</reference_field>
+        <related_list/>
+        <simple_reference>false</simple_reference>
+        <sys_class_name>sys_relationship</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-02-16 09:37:00</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>23f91fd4dbc1b240c316f27eaf9619d6</sys_id>
+        <sys_mod_count>24</sys_mod_count>
+        <sys_name>Alarms on CI</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sys_relationship_23f91fd4dbc1b240c316f27eaf9619d6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-02-16 10:24:06</sys_updated_on>
+    </sys_relationship>
+    <sys_translated_text action="delete_multiple" query="documentkey=23f91fd4dbc1b240c316f27eaf9619d6"/>
+</record_update>

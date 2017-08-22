@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Monthly Transaction Report" max_length="40" name="x_agsa_promonitor_monthly_transaction_report" type="collection">
+        <element label="Average" max_length="40" name="average" type="integer"/>
+        <element label="Connector" max_length="32" name="connector" reference="cmdb_ci_appl_sap" type="reference"/>
+        <element label="Count" max_length="40" name="count" type="integer"/>
+        <element label="End Date" max_length="40" name="end_date" type="glide_date_time"/>
+        <element label="List Metrics" max_length="1024" name="list_metrics" type="url"/>
+        <element label="Month Number" max_length="40" name="monthnumber" type="integer"/>
+        <element label="Standard Deviation" max_length="20" name="standarddeviation" type="decimal"/>
+        <element label="Start Date" max_length="40" name="start_date" type="glide_date_time"/>
+        <element label="System" max_length="32" name="system" reference="cmdb_ci_appl_sap_system" type="reference"/>
+        <element label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
+        <element label="Domain Path" max_length="255" name="sys_domain_path" type="domain_path"/>
+        <element label="Transaction" max_length="50" name="transaction" type="string"/>
+        <index name="index">
+            <element name="system"/>
+        </index>
+        <index name="index2">
+            <element name="connector"/>
+        </index>
+        <index name="index3">
+            <element name="sys_domain"/>
+        </index>
+        <index name="index4">
+            <element name="sys_domain_path"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_js_include">
+    <sp_js_include action="INSERT_OR_UPDATE">
+        <display_name>Angular charts min library</display_name>
+        <source>local</source>
+        <sys_class_name>sp_js_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-03-27 15:37:16</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7082a94d37b1f680806457d543990e15</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Angular charts min library</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_ui_script display_value="x_agsa_promonitor.angular-charts">f496cdc137b1f680806457d543990e12</sys_ui_script>
+        <sys_update_name>sp_js_include_7082a94d37b1f680806457d543990e15</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-03-27 15:37:16</sys_updated_on>
+        <url/>
+    </sp_js_include>
+</record_update>

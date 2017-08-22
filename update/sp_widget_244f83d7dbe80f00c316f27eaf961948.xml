@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+	var ctx = document.getElementById("myChart");
+	var myLineChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			//labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange","sadf","rtert"],
+			labels: c.data.myDate,
+			datasets: [{
+					label: 'CONNECTIONS COUNT',
+					data: c.data.value,
+					fill: false,
+					borderColor: '#c71f3b',
+					pointBackgroundColor: '#c71f3b',
+					borderWidth: 1
+				}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:false
+					}
+				}]
+			}
+		}
+	});
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>tblockedcount</id>
+        <internal>false</internal>
+        <link/>
+        <name>TblockedCount</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+		data.system = $sp.getParameter('system');
+		data.value=[];
+		data.myDate=[];
+		var getData=new GlideRecord('x_agsa_promonitor_metrics')
+		getData.addEncodedQuery('name=CONNECTIONS_COUNT^sid='+data.system);
+		getData.setLimit(10);
+		getData.orderByDesc('sys_created_on');
+		getData.query();
+		while (getData.next()) {
+			data.value.push(parseInt(getData.data));
+			data.myDate.push(getData.sys_created_on.getDisplayValue().split(' ')[1].toString());
+		}
+})();
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-08-18 16:11:01</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>244f83d7dbe80f00c316f27eaf961948</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>TblockedCount</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sp_widget_244f83d7dbe80f00c316f27eaf961948</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-08-18 16:11:01</sys_updated_on>
+        <template><![CDATA[<canvas id="myChart" width="300" height="300"/> </canvas>
+]]></template>
+    </sp_widget>
+</record_update>

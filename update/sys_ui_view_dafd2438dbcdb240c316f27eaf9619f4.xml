@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_view">
+    <sys_ui_view action="INSERT_OR_UPDATE">
+        <group/>
+        <hidden>false</hidden>
+        <name>RPT747d28f4dbcdb240c316f27eaf961968</name>
+        <roles/>
+        <sys_class_name>sys_ui_view</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-02-17 10:21:47</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>dafd2438dbcdb240c316f27eaf9619f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-02-17 10:21:47</sys_updated_on>
+        <title>Rpt747d28f4dbcdb240c316f27eaf961968</title>
+        <user/>
+    </sys_ui_view>
+</record_update>

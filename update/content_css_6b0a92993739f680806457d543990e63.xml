@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="content_css">
+    <content_css action="INSERT_OR_UPDATE">
+        <name>UIPageTableStyleServicePortal</name>
+        <style>table.sstatus {&#13;
+		width: 100%;&#13;
+		border-radius:0!important;&#13;
+		background-color: #242f36;&#13;
+		border: none;&#13;
+		box-shadow: 0 6px 6px -3px #242f36;&#13;
+	}&#13;
+	&#13;
+	HTML[data-doctype=true] [data-formname=home] table:not(.table), HTML[data-doctype=true] #homepage_grid table:not(.table) {&#13;
+		border-spacing: 0px!important;&#13;
+	}&#13;
+	&#13;
+	th.sstatus {&#13;
+		height: 20px;&#13;
+                white-space: nowrap;&#13;
+	}&#13;
+	th.sstatus, td.sstatus {&#13;
+		padding: 5px 15px 5px 15px;&#13;
+		text-align: left;&#13;
+                font-size:15px;&#13;
+                color:white;&#13;
+		border-bottom: 1px solid rgba(91,108,118,0.4);&#13;
+		border-top: none;&#13;
+	}&#13;
+	&#13;
+	HTML[data-doctype=true] BODY td.sstatus:nth-child(even) {&#13;
+		background-color: #344047;&#13;
+		color: white!important;&#13;
+	}&#13;
+	&#13;
+	th.sstatus {&#13;
+		font-weight: bold;&#13;
+	}&#13;
+	button.sstatus {&#13;
+		padding:6px 0 6px 0;&#13;
+		width:90px;&#13;
+		border-radius:2px;&#13;
+	}&#13;
+	tr.header {&#13;
+		 background-color:#B2C2CF;&#13;
+	}&#13;
+	&#13;
+	th {&#13;
+		text-align: left;&#13;
+		padding: 15px;&#13;
+		text-transform: uppercase;&#13;
+		background-color: #b2c2cf;&#13;
+		border-left: 1px solid rgba(128,128,128,0.3);&#13;
+	}&#13;
+	&#13;
+	th:first-child {&#13;
+		border-left:none;&#13;
+	}&#13;
+	&#13;
+	table.sstatus button {&#13;
+		border:none!important;&#13;
+		border-radius:0!important;&#13;
+		width:100%;&#13;
+		color: white!important;&#13;
+		text-shadow: 0 1px 4px #242f36;&#13;
+		letter-spacing: 1px;&#13;
+	}&#13;
+	&#13;
+	HTML[data-doctype=true] .drag_section, HTML[data-doctype=true] .drag_section_hilight_neighbors {&#13;
+		border-radius:0!important;&#13;
+		overflow:visible!important;&#13;
+	}&#13;
+	</style>
+        <sys_class_name>content_css</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-03-28 14:18:03</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>6b0a92993739f680806457d543990e63</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>UIPageTableStyleServicePortal</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>content_css_6b0a92993739f680806457d543990e63</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-03-29 13:26:58</sys_updated_on>
+        <type>local</type>
+        <url/>
+    </content_css>
+</record_update>

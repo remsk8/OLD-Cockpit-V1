@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="cmn_skill">
+    <cmn_skill action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Essentially, SAP Security is a complex set of different areas with different responsibilities. There are several ways how to separate it into discrete parts to work with. SAP Security can be divided into application and business layers or platform and customization level. On the other hand, it can be grouped by approach such as detection and response or organizational and technical. SAP Security can constitute distinct areas in accordance with platform types (ABAP, JAVA, and so on).</description>
+        <name>SAP Security</name>
+        <sys_class_name>cmn_skill</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-02-27 14:24:28</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>f26585cc3711ba40806457d543990e60</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>SAP Security</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>cmn_skill_f26585cc3711ba40806457d543990e60</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-02-27 14:24:37</sys_updated_on>
+    </cmn_skill>
+</record_update>

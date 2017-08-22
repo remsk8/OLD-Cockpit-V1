@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element audit="true" label="Alarms" max_length="40" name="x_agsa_promonitor_alarms" sizeclass="5478" type="collection">
+        <element label="Acknowledge" max_length="40" name="acknowledge" type="boolean"/>
+        <element label="Client" max_length="50" name="client" type="string"/>
+        <element label="Company" max_length="32" name="company" reference="core_company" type="reference"/>
+        <element label="ConfigId" max_length="40" name="configid" type="string"/>
+        <element label="ConnectorId" max_length="32" name="connectorid" reference="cmdb_ci_appl_sap" type="reference"/>
+        <element label="Count" max_length="40" name="count" type="integer"/>
+        <element label="CustomSource" max_length="50" name="customsource" type="string"/>
+        <element label="Description" max_length="200" name="description" type="string"/>
+        <element label="Host" max_length="100" name="host" type="string"/>
+        <element label="Id" max_length="255" name="id" type="string"/>
+        <element label="Instance" max_length="100" name="instance" type="string"/>
+        <element label="Item" max_length="100" name="item" type="string"/>
+        <element label="Locked until" max_length="40" name="locked_until" type="glide_date_time"/>
+        <element label="Message" max_length="400" name="message" type="string"/>
+        <element label="Metric" max_length="100" name="metric" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Module" max_length="40" name="module" type="string"/>
+        <element label="Module Sid" max_length="40" name="module_sid" type="string"/>
+        <element label="Raise Time" max_length="40" name="raise_time" type="glide_date_time"/>
+        <element label="Severity" max_length="40" name="severity" type="string"/>
+        <element label="Severity Code" max_length="40" name="severity_code" type="integer"/>
+        <element label="Sid" max_length="32" name="sid" reference="cmdb_ci_appl_sap_system" type="reference"/>
+        <element label="SubsystemId" max_length="100" name="subsystemid" type="string"/>
+        <element default="global" label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
+        <element label="Domain Path" max_length="255" name="sys_domain_path" type="domain_path"/>
+        <element label="Target" max_length="100" name="target" type="string"/>
+        <element label="ToClear" max_length="40" name="toclear" type="boolean"/>
+        <element label="User" max_length="100" name="user" type="string"/>
+        <index name="index">
+            <element name="connectorid"/>
+        </index>
+        <index name="index2">
+            <element name="sys_domain_path"/>
+        </index>
+        <index name="index3">
+            <element name="sys_domain"/>
+        </index>
+        <index name="index4">
+            <element name="company"/>
+        </index>
+        <index name="index5">
+            <element name="id"/>
+        </index>
+        <index name="index6">
+            <element name="sid"/>
+        </index>
+    </element>
+</database>

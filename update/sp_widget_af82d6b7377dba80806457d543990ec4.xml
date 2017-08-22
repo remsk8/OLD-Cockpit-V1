@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>td.sstatus {
+	white-space:nowrap;
+ 	font-size:13px;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>dailytransactionreport</id>
+        <internal>false</internal>
+        <link/>
+        <name>DaliyTransactionReport</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	// Set the first Line
+		data.header=[];
+		var transactionlist=[];
+	  data.body=[];
+		obj={};
+		data.system=$sp.getParameter("system");
+		data.options=[{value:'!!',label:'All'}];
+		slist=[];
+	
+	// Get transactionlist
+	var count = new GlideRecord('x_agsa_promonitor_report_config');
+	count.addQuery('type','Transaction'); 
+	if (data.system !== null) {
+		count.addQuery('system.sid',data.system);
+	}
+	count.query();  
+	while (count.next()) {
+	  transactionlist.push(count.name.toString()+'àààà'+count.system.sid.toString());
+		if (slist.indexOf(count.system.sid.toString()) === -1 ) {
+			slist.push(count.system.sid.toString());
+		}
+	}
+	for (var k=0;k<slist.length;k++) {
+		data.options.push({value:slist[k],label:slist[k]});
+	}
+	
+	var gdt = new GlideAggregate('x_agsa_promonitor_daily_transaction_report');
+	gdt.addEncodedQuery('generationdateRELATIVEGT@dayofweek@ago@10');
+	gdt.addAggregate('COUNT', 'generationdate');
+	gdt.query();   
+	while (gdt.next()) {
+	  data.header.unshift(gdt.generationdate.toString());
+	}
+	
+	// Build Other line
+	// Now foreach element in transactionlist, find data and construct JSON
+	// for each system 
+	for (var j=0;j<transactionlist.length;j++) {
+		obj.col0=transactionlist[j].split('àààà')[0];
+		obj.col1=transactionlist[j].split('àààà')[1];
+		// Now building column based on gendate
+		for (var d=0;d<data.header.length;d++){
+			var gr=new GlideRecord('x_agsa_promonitor_daily_transaction_report');
+			gr.addQuery('generationdate',data.header[d]);
+			gr.addQuery('system.name',transactionlist[j].split('àààà')[1]);
+			gr.addQuery('transaction',transactionlist[j].split('àààà')[0]);
+			gr.query();
+			while(gr.next()) {
+				obj['col'+(d+2)]=parseInt(gr.average);
+				obj['col'+(d+2)+'data']='('+gr.standarddeviation+'-'+gr.count+')';
+			}
+		}
+
+		data.body.push(obj);
+		obj={};
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-05 08:10:05</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>af82d6b7377dba80806457d543990ec4</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>DaliyTransactionReport</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sp_widget_af82d6b7377dba80806457d543990ec4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-05 08:31:06</sys_updated_on>
+        <template><![CDATA[<link href="c61202770fe32200a09d8bbce1050e0a.cssdbx?" rel="stylesheet" type="text/css" />
+<h1>Transaction - Average Duration by Days</h1>
+For each transaction, the average day duration is displayed in white. Green counters shows standard deviation and the other number represent the number of metrics used for aggregation.
+<a href="x_agsa_promonitor_daily_transaction_report_list.do?sysparm_query=" target="_blanck">Open Daily Transaction Report Console</a>
+<br/>
+<br/>
+<div ng-controller="getData">
+	  <form>
+		<div class="form-group">
+		  <div class="input-group">
+			<input type="text" style="float:left;width:auto;" class="form-control" placeholder="Search Job Name" ng-model="searchJob"  size="35"/>
+        <span ng-if="data.system === null">
+          <select ng-model="$parent.search.id" ng-init="$parent.search.id='!!'" style="float:left;height:32px;width:130px;">
+            <option ng-repeat="x in data.options" ng-selected="{{search.id == x.value}}" value="{{x.value}}">{{x.label}}</option>
+          </select>
+        </span>
+		  </div>      
+		</div>
+  </form>
+
+<table class='sstatus'>
+  <thead>
+    <tr>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col0'; sortReverse = !sortReverse">Transaction<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col0' &amp;&amp; sortReverse"/></a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col1'; sortReverse = !sortReverse">System<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col1' &amp;&amp; sortReverse"/></a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col2'; sortReverse = !sortReverse">{{data.header[0]}}<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col2' &amp;&amp; sortReverse"/></a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col3'; sortReverse = !sortReverse">{{data.header[1]}}<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col3' &amp;&amp; sortReverse"/></a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col4'; sortReverse = !sortReverse">{{data.header[2]}}<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col4' &amp;&amp; sortReverse"/></a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col5'; sortReverse = !sortReverse">{{data.header[3]}}<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col5' &amp;&amp; sortReverse"/></a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col6'; sortReverse = !sortReverse">{{data.header[4]}}<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col6' &amp;&amp; sortReverse"/></a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col7'; sortReverse = !sortReverse">{{data.header[5]}}<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col7' &amp;&amp; sortReverse"/></a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col8'; sortReverse = !sortReverse">{{data.header[6]}}<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col8' &amp;&amp; sortReverse"/></a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col9'; sortReverse = !sortReverse">{{data.header[7]}}<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col9' &amp;&amp; sortReverse"/></a></th>
+
+    </tr>
+  </thead>
+  <tr ng-repeat="item in data.body | orderBy:sortType:sortReverse | filter:searchJob | filter:search.id">
+				<td class="sstatus"><a href="x_agsa_promonitor_daily_transaction_report_list.do?sysparm_query=job={{item.col0}}^system.name={{item.col1}}" target="_blanck">{{item.col0}}</a> </td>
+				<td class="sstatus">{{item.col1}} <span class="sstatus"> {{item.col1data}}</span></td>
+				<td class="sstatus">{{item.col2}} <span class="sstatus"> {{item.col2data}}</span></td>
+				<td class="sstatus">{{item.col3}} <span class="sstatus"> {{item.col3data}}</span></td>
+				<td class="sstatus">{{item.col4}} <span class="sstatus"> {{item.col4data}}</span></td>
+				<td class="sstatus">{{item.col5}} <span class="sstatus"> {{item.col5data}}</span></td>
+				<td class="sstatus">{{item.col6}} <span class="sstatus"> {{item.col6data}}</span></td>
+				<td class="sstatus">{{item.col7}} <span class="sstatus"> {{item.col7data}}</span></td>
+    		<td class="sstatus">{{item.col8}} <span class="sstatus"> {{item.col8data}}</span></td>
+				<td class="sstatus">{{item.col9}} <span class="sstatus"> {{item.col9data}}</span></td>
+		</tr>
+</table>
+</div>]]></template>
+    </sp_widget>
+</record_update>

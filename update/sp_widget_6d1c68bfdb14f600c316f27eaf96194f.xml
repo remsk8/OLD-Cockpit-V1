@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>systemoverview</id>
+        <internal>false</internal>
+        <link/>
+        <name>System Overview</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	system=[];
+	data.list=[];
+
+	// Get system list
+	var syst = new GlideRecord("cmdb_ci_appl_sap_system");
+	syst.addQuery('operational_status','1');
+	syst.orderBy('company');
+	syst.query();
+	while(syst.next()) {
+	system.push(syst.sid.toString()+'àààà'+syst.operational_status.getDisplayValue().toString()+'àààà'+syst.company.name.toString()+'àààà'+syst.type.toString());
+	}
+
+	// Now For each system, we need company, operational status, action, worst alarm severity
+	for (var i=0;i<system.length;i++) {
+		var getSev = new GlideRecord("x_agsa_promonitor_alarms");
+		getSev.addQuery('sid.sid',system[i].split('àààà')[0]);
+		getSev.addQuery('acknowledge','false');
+		getSev.orderByDesc('severity_code');
+		getSev.query();
+		getSev.next();
+		var obj={};
+		obj.sid=system[i].split('àààà')[0].toString();
+		obj.status=system[i].split('àààà')[1].toString();
+		obj.company=system[i].split('àààà')[2].toString();
+		obj.type=system[i].split('àààà')[3].toString();
+		obj.severity=getSev.severity.toString();
+		// Get Last Alarm
+		var lastUpd = new GlideRecord("x_agsa_promonitor_alarms");
+		lastUpd.addQuery('sid.sid',system[i].split('àààà')[0]);
+		lastUpd.addQuery('acknowledge','false');
+		lastUpd.orderByDesc('sys_updated_on');
+		lastUpd.query();
+		lastUpd.next();
+		obj.lastUpd=lastUpd.sys_updated_on.getDisplayValue();
+		// Add color depending on delay
+		var dte=lastUpd.sys_updated_on.toString();
+		var gdt1=new GlideDateTime();
+		gdt1.setValue(dte);
+		var gdt2=new GlideDateTime();
+		var dur = GlideDateTime.subtract(gdt1, gdt2); // the difference between gdt1 and gdt2  	
+		if (dur.getNumericValue() > 86400000) {
+			obj.value='false';
+		} else { 
+			obj.value='true';
+		} 
+		if (dur.getNumericValue() == 'undefined') {
+			obj.value='';
+		}
+		data.list.push(obj);
+	}
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-20 11:08:51</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>6d1c68bfdb14f600c316f27eaf96194f</sys_id>
+        <sys_mod_count>53</sys_mod_count>
+        <sys_name>System Overview</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sp_widget_6d1c68bfdb14f600c316f27eaf96194f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-08-16 14:18:39</sys_updated_on>
+        <template><![CDATA[<link href="c61202770fe32200a09d8bbce1050e0a.cssdbx?" rel="stylesheet" type="text/css" />
+<table class='sstatus' sytle='width:30%;'>
+	<thead>
+		<tr>
+			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'sid'; sortReverse = !sortReverse">Systen Name<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col0' &amp;&amp; sortReverse"/></a></th>
+ 			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'type'; sortReverse = !sortReverse">Type<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col0' &amp;&amp; sortReverse"/></a></th>
+			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'company'; sortReverse = !sortReverse">Company<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col1' &amp;&amp; sortReverse"/></a></th>
+			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'status'; sortReverse = !sortReverse">Operational Status<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col2' &amp;&amp; sortReverse"/></a></th>
+			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = ''; sortReverse = !sortReverse">Actions<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col3' &amp;&amp; sortReverse"/></a></th>
+			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = ''; sortReverse = !sortReverse">Last Data<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col3' &amp;&amp; sortReverse"/></a></th>
+			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'severity'; sortReverse = !sortReverse">Worst Alarm Severity<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col4' &amp;&amp; sortReverse"/></a></th>
+		</tr>
+	</thead>  
+	<tr ng-repeat="item in data.list | orderBy:sortType:sortReverse | filter:searchAlarm">
+		<td class="sstatus"><a ng-href="pm?id=systemview&system={{item.sid}}" target="_blank">{{item.sid}}</a> </td>
+ 		<td class="sstatus">{{item.type}}</td>
+ 		<td class="sstatus"><a style='color:lightblue;' href="pm?id=companyview&company={{item.company}}" target="_blanck">{{item.company}}</a></td>
+ 		<td class="sstatus">{{item.status}}</td>
+		<td class="sstatus" ng-if='item.type == "NETWEAVER"' ><a style='color:lightblue;' href="pm?id=detailview&system={{item.sid}}&company={{item.company}}">Detail View</a></td>
+   		<td class="sstatus" ng-if='item.type == "HANA"' ><a style='color:lightblue;' href="pm?id=hanaview&system={{item.sid}}&company={{item.company}}">Detail View</a></td>
+   		<td class="sstatus" ng-if='item.value == "true"' style='color:lightgreen;text-align:center;'>{{item.lastUpd}}</td>
+   		<td class="sstatus" ng-if='item.value == "false"' style='color:#c71f3b;text-align:center;'>{{item.lastUpd}}</td>
+		<td class="sstatus" ng-if='item.severity == "CRITICAL"' style='color:white;background-color:#c71f3b;'><a ng-href="x_agsa_promonitor_alarms_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid.sid={{item.sid}}" target="_blank">{{item.severity}}</a></td>
+		<td class="sstatus" ng-if='item.severity == "MAJOR"' style='background-color:#ff8700;'><a ng-href="x_agsa_promonitor_alarms_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid.sid={{item.sid}}" target="_blank">{{item.severity}}</a></td>
+		<td class="sstatus" ng-if='item.severity == "MINOR"' style='background-color:#6b2cec;'><a ng-href="x_agsa_promonitor_alarms_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid.sid={{item.sid}}" target="_blank">{{item.severity}}</a></td>
+		<td class="sstatus" ng-if='item.severity == "WARNING"' style='background-color:#ecd82c;'><a ng-href="x_agsa_promonitor_alarms_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid.sid={{item.sid}}" target="_blank">{{item.severity}}</a></td>
+		<td class="sstatus" ng-if='item.severity == "INFORMATIONAL"' style='background-color:#3bb3c9;'><a ng-href="x_agsa_promonitor_alarms_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid.sid={{item.sid}}" target="_blank">{{item.severity}}</a></td>
+   		<td class="sstatus" ng-if='item.severity == "CLEAR"' style='background-color:#3bc999;'><a ng-href="x_agsa_promonitor_alarms_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid.sid={{item.sid}}" target="_blank">{{item.severity}}</a></td>
+   		<td class="sstatus" ng-if='item.severity == ""' style='background-color:#3bc999;'>NO DATA</td>
+  </tr>
+</table>]]></template>
+    </sp_widget>
+</record_update>

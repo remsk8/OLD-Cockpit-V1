@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Report Config" max_length="40" name="x_agsa_promonitor_report_config" type="collection">
+        <element label="Name" mandatory="true" max_length="100" name="name" type="string"/>
+        <element label="System" mandatory="true" max_length="32" name="system" reference="cmdb_ci_appl_sap_system" type="reference"/>
+        <element label="Domain" mandatory="true" max_length="32" name="sys_domain" type="domain_id"/>
+        <element label="Domain Path" max_length="255" name="sys_domain_path" type="domain_path"/>
+        <element attributes="edge_encryption_enabled=true" choice="3" default="Job" label="Type" mandatory="true" max_length="40" name="type" type="choice">
+            <choice>
+                <element label="Transaction" sequence="0" value="Transaction"/>
+                <element label="Job" sequence="1" value="Job"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="system"/>
+        </index>
+        <index name="index2">
+            <element name="sys_domain"/>
+        </index>
+        <index name="index3">
+            <element name="sys_domain_path"/>
+        </index>
+    </element>
+</database>

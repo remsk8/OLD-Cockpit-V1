@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Daily Job Report" max_length="40" name="x_agsa_promonitor_daily_job_report" type="collection">
+        <element label="Average" max_length="40" name="average" type="integer"/>
+        <element label="Connector" max_length="40" name="connector" reference="cmdb_ci_appl_sap" type="reference"/>
+        <element label="Count" max_length="20" name="count" type="decimal"/>
+        <element label="GenerationDate" max_length="40" name="generationdate" type="glide_date"/>
+        <element label="Job" max_length="40" name="job" type="string"/>
+        <element label="List Metrics" max_length="1024" name="list_metrics" type="url"/>
+        <element label="Standard Deviation" max_length="20" name="standarddeviation" type="decimal"/>
+        <element label="System" max_length="32" name="system" reference="cmdb_ci_appl_sap_system" type="reference"/>
+        <element label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
+        <element label="Domain Path" max_length="255" name="sys_domain_path" type="domain_path"/>
+        <index name="index">
+            <element name="system"/>
+        </index>
+        <index name="index2">
+            <element name="sys_domain"/>
+        </index>
+        <index name="index3">
+            <element name="sys_domain_path"/>
+        </index>
+        <index name="index4">
+            <element name="generationdate"/>
+        </index>
+    </element>
+</database>

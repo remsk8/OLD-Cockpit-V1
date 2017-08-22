@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl/>
+        <http_method>POST</http_method>
+        <name>proMonitor_configInsert</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    gs.include('ProMonitorLib');
+    var arrayUtil = new global.ArrayUtil();
+	var promon=new ProMonitorLib();
+	var data=request.body.data;
+	var len=0;
+	var lenConn=0;
+	var obj={}; 
+	var systemId='';
+	var comArray=[];
+
+	//count the number of systems, getting the iteration count for all
+	for (var i in data) {
+		len++;
+	}
+	
+	// Extract Company Data
+	for (var m=0;m<len;m++) {
+		comArray.push(data[m].company.toString());
+	}
+	comArray=arrayUtil.unique(comArray);
+	
+	//
+	// COMPANY 
+	//
+	//	checkKVIfExist: function(table,key,value){
+	for (var n=0;n<comArray.length;n++) {
+		if (promon.checkKVIfExist('core_company','name',comArray[n]) == true) {
+			//gs.info('COMPANY EXIST '+comArray[n]);
+		} else {
+			//gs.info('COMPANY DOESNT EXIST '+comArray[n]);
+			var insertcomp=new GlideRecord('core_company');
+			insertcomp.initialize();
+			insertcomp.name=comArray[n];
+			var companyid=insertcomp.insert();
+		}
+	}	
+	
+	// Extract system data
+	for (var j=0;j<len;j++) {
+		//
+		// SAP SYSTEMS
+		//
+		//	checkKVIfExist: function(table,key,value){
+		if (promon.checkKVIfExist('cmdb_ci_appl_sap_system','ci_instance_number',data[j].id.toString()) == true) {
+			var checksyst=new GlideRecord('cmdb_ci_appl_sap_system');
+			checksyst.get('ci_instance_number',data[j].id.toString());
+			checksyst.name=data[j].name;
+			checksyst.sid=data[j].systemId;
+			checksyst.short_description=data[j].description;
+			checksyst.type=data[j].type;
+			checksyst.company=getCompanyId(data[j].company.toString());
+			checksyst.update();
+			systemId=checksyst.sys_id;
+		} else {
+			//gs.info('DEBUG INSERT for '+data[j].id);
+			var insertsyst=new GlideRecord('cmdb_ci_appl_sap_system');
+			insertsyst.initialize();
+			insertsyst.name=data[j].name;
+			insertsyst.type=data[j].type;
+			insertsyst.ci_instance_number=data[j].id.toString();
+			insertsyst.sid=data[j].systemId;
+			insertsyst.short_description=data[j].description;
+			insertsyst.company=getCompanyId(data[j].company.toString());
+			systemId=insertsyst.insert();
+		}
+		
+		//
+		// SAP CONNECTORS- APPLICATIONS SERVERS
+		//
+		// count the number of connectors
+		for (var k in data[j].connectors) {
+			lenConn++;
+		}
+		//gs.info('DEBUG '+lenConn);
+		for (var l=0;l<lenConn;l++) {
+			obj=data[j].connectors[l];
+			//gs.info('DEBUG '+data[j].name+obj.id.toString()+' number:'+l+'-'+lenConn+' '+obj.name);
+			if (obj.id != '' && obj.id != undefined && lenConn != 0) {
+				//Now Foreach Connector found, choose if we need to insert or update
+				if (promon.checkKVIfExist('cmdb_ci_appl_sap','x_agsa_promonitor_connectorid',obj.id.toString()) == true) {
+					//gs.info('DEBUG UPDATE CON for '+obj.id);
+					var checkconn=new GlideRecord('cmdb_ci_appl_sap');
+					checkconn.get('x_agsa_promonitor_connectorid',obj.id.toString());
+					checkconn.name=obj.name;
+					checkconn.type=obj.type;
+					if (obj.active == true) {
+						checkconn.operational_status='1';
+					} else {
+						checkconn.operational_status='2';
+					}
+					checkconn.x_agsa_promonitor_sap_system=systemId;
+					checkconn.host_name=obj.host;
+					//checkconn.tcp_port=obj.messageServerPort;
+					checkconn.update();	
+				} else {
+					//gs.info('DEBUG INSERT CON for '+obj.id);
+					var insertconn=new GlideRecord('cmdb_ci_appl_sap');
+					insertconn.initialize();
+					insertconn.name=obj.name;
+					insertconn.type=obj.type;
+					if (obj.active == true) {
+						insertconn.operational_status='1';
+					} else {
+						insertconn.operational_status='2';
+					}
+					insertconn.x_agsa_promonitor_sap_system=systemId;
+					insertconn.host_name=obj.host;
+					//insertconn.tcp_port=obj.messageServerPort.toString();
+					insertconn.x_agsa_promonitor_connectorid=obj.id.toString();
+					insertconn.insert();
+				}
+			}
+		}
+		
+		//RESET SYSTEM ID
+		obj={};
+		lenConn=0;
+		systemId='';
+	}
+	
+	function getCompanyId(comp){
+		var getComp=new GlideRecord('core_company');
+		getComp.get('name',comp);
+		return getComp.sys_id;
+	}
+	
+})(request, response);
+]]></operation_script>
+        <operation_uri>/api/x_agsa_promonitor/configinsert</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/</relative_path>
+        <request_example/>
+        <requires_acl_authorization>false</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-11-23 17:53:18</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>817cdbcd371f2200806457d543990e6e</sys_id>
+        <sys_mod_count>82</sys_mod_count>
+        <sys_name>proMonitor_configInsert</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sys_ws_operation_817cdbcd371f2200806457d543990e6e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-08-16 14:01:06</sys_updated_on>
+        <web_service_definition display_value="ConfigInsert">a64c9bcd371f2200806457d543990e6d</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sysevent_in_email_action">
+    <sysevent_in_email_action action="INSERT_OR_UPDATE">
+        <action>record_action</action>
+        <active>false</active>
+        <assignment_operator/>
+        <condition_script/>
+        <description/>
+        <event_name>email.read</event_name>
+        <filter_condition/>
+        <from/>
+        <name>Same03 reports</name>
+        <order>50</order>
+        <reply_email/>
+        <required_roles/>
+        <script><![CDATA[(function runAction(/*GlideRecord*/ current, /*GlideRecord*/ event, /*EmailWrapper*/ email, /*ScopedEmailLogger*/ logger, /*EmailClassifier*/ classifier) {
+	var value=current.insert();
+	/*gs.info('value is at '+value);
+	var att = new GlideRecord("sys_attachment");  
+    att.addQuery("table_name","x_agsa_promonitor_reports");
+	att.addQuery("table_sys_id" ,value);  
+    att.query();
+	att.next();
+	
+	var attachID = att.sys_id;
+	// Get the contents of the file
+
+	var sa = new GlideSysAttachment();   
+	var strData=sa.getContent(att);
+	gs.info(strData.toString());
+	
+	/*current.reportcontent=strData.toString();
+	current.update();*/
+	
+})(current, event, email, logger, classifier);]]></script>
+        <stop_processing>true</stop_processing>
+        <sys_class_name>sysevent_in_email_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-12-27 14:58:14</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>69f9b900db447240c316f27eaf961921</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_name>Same03 reports</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sysevent_in_email_action_69f9b900db447240c316f27eaf961921</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-02-06 14:06:18</sys_updated_on>
+        <table>x_agsa_promonitor_reports</table>
+        <template/>
+        <type>new</type>
+    </sysevent_in_email_action>
+</record_update>

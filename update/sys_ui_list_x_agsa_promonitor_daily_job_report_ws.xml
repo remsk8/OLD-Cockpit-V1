@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_agsa_promonitor_daily_job_report" version="2" view="ws">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>job</element>
+            <list_id display_value="x_agsa_promonitor_daily_job_report" element="NULL" name="x_agsa_promonitor_daily_job_report" parent="NULL" relationship="NULL" sys_domain="global" view="1a552d04db2f2600c316f27eaf961953">a0652d04db2f2600c316f27eaf961958</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-12-02 16:54:14</sys_created_on>
+            <sys_id>a4652d04db2f2600c316f27eaf961958</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-12-02 16:54:14</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_agsa_promonitor_daily_job_report</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-12-02 16:54:14</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>a0652d04db2f2600c316f27eaf961958</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_agsa_promonitor_daily_job_report</sys_name>
+            <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+            <sys_update_name>sys_ui_list_x_agsa_promonitor_daily_job_report_ws</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-12-02 16:54:14</sys_updated_on>
+            <sys_user/>
+            <view display_value="WS" name="ws">1a552d04db2f2600c316f27eaf961953</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, spUtil) {
+	var c = this;
+	/*$scope.uiAction = function(action) {
+		alert(action)
+		$scope.data.action='resolved';
+		$scope.server.update();
+	}*/
+	c.uiAction = function(action) {
+		$scope.data.sdg = action;
+		alert(c.data.sdg)
+
+		c.server.update().then(function() {
+			c.data.sdg = 'ok';
+		});
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.panel-heading {&#13;
+	background-color:#428bca;&#13;
+  	color:white;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>ticketsolverprom</id>
+        <internal>false</internal>
+        <link/>
+        <name>Ticket Solver PROM</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function( input ) {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	// Get table & sys_id
+	//data.table = input.table || $sp.getParameter("table");
+	data.table=$sp.getParameter("table");
+	//data.sys_id = input.sys_id || $sp.getParameter("sys_id");
+	data.sys_id=$sp.getParameter("sys_id");
+ gs.info('DEBUGGED sdf'+input.sdg)
+
+ 
+	// Valid GlideRecord
+	gr = new GlideRecord(data.table);
+	if (!gr.isValid())
+		return;
+ 
+	// Valid sys_id
+	if (!gr.get(data.sys_id))
+		return;
+ 
+	if (input && input.action) {
+		var action = input.action;
+		if (action == 'resolve') {
+			// Resolve Incident
+			gr.setValue('incident_state', 6);
+			gr.setValue('state', 6);
+			gr.setValue('resolved_by', gs.getUserID());
+			gr.setValue('comment', 'Task closed');
+			gr.update();
+		}
+		if (action == 'cancel') {
+			// Do something else
+		}
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-05-02 16:48:53</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>1ecb0720db6af600c316f27eaf961907</sys_id>
+        <sys_mod_count>37</sys_mod_count>
+        <sys_name>Ticket Solver PROM</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sp_widget_1ecb0720db6af600c316f27eaf961907</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-03 08:52:56</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default">
+  <div class="panel-heading padder-b-none">
+      <div class="panel-title pull-left">Actions</div>
+      <a href="javascript:void(0)" ng-click="getLocation()" class="panel-button" title="Check in location">
+        <span class="glyphicon glyphicon-check"></span>
+      </a>
+      <div class="clearfix"></div>
+    </div>
+ <div class="panel-body">
+ <button type="button" class="btn btn-primary btn-block" ng-click="c.uiAction('resolve')">Close Task</button>
+ <button type="button" class="btn btn-default btn-block" ng-click="c.uiAction('cancel')">Cancel</button>
+ </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

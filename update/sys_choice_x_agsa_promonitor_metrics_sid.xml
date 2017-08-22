@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="sid" table="x_agsa_promonitor_metrics" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>sid</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>HDB</label>
+            <language>en</language>
+            <name>x_agsa_promonitor_metrics</name>
+            <sequence/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-06 09:27:10</sys_created_on>
+            <sys_domain>e58caa9b379fe200806457d543990e08</sys_domain>
+            <sys_domain_path>!!$/!!#/</sys_domain_path>
+            <sys_id>efae08d3dbc07200c316f27eaf961966</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-06 09:31:24</sys_updated_on>
+            <value>HDB</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>sid</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>ID2</label>
+            <language>en</language>
+            <name>x_agsa_promonitor_metrics</name>
+            <sequence/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-06 09:27:23</sys_created_on>
+            <sys_domain>e58caa9b379fe200806457d543990e08</sys_domain>
+            <sys_domain_path>!!$/!!#/</sys_domain_path>
+            <sys_id>7dbec8d3dbc07200c316f27eaf96197b</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-06 09:31:24</sys_updated_on>
+            <value>ID2</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>sid</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>S4H</label>
+            <language>en</language>
+            <name>x_agsa_promonitor_metrics</name>
+            <sequence/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-06 09:27:50</sys_created_on>
+            <sys_domain>e58caa9b379fe200806457d543990e08</sys_domain>
+            <sys_domain_path>!!$/!!#/</sys_domain_path>
+            <sys_id>b4de0cd3dbc07200c316f27eaf96191d</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-06 09:33:29</sys_updated_on>
+            <value>S4H</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>sid</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>QAS</label>
+            <language>en</language>
+            <name>x_agsa_promonitor_metrics</name>
+            <sequence>0</sequence>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-02-17 11:00:57</sys_created_on>
+            <sys_domain>d0998e77dbf07240c316f27eaf961914</sys_domain>
+            <sys_domain_path>!!&amp;/</sys_domain_path>
+            <sys_id>c0f63c3cdbcdb240c316f27eaf961959</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-02-17 11:00:57</sys_updated_on>
+            <value>QAS</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>sid</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>ECT</label>
+            <language>en</language>
+            <name>x_agsa_promonitor_metrics</name>
+            <sequence>1</sequence>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-02-17 11:00:57</sys_created_on>
+            <sys_domain>d0998e77dbf07240c316f27eaf961914</sys_domain>
+            <sys_domain_path>!!&amp;/</sys_domain_path>
+            <sys_id>08f63c3cdbcdb240c316f27eaf961959</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-02-17 11:00:57</sys_updated_on>
+            <value>ECT</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>sid</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>BWP</label>
+            <language>en</language>
+            <name>x_agsa_promonitor_metrics</name>
+            <sequence/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-06 09:26:08</sys_created_on>
+            <sys_domain>fddb5f2a3713e200806457d543990e09</sys_domain>
+            <sys_domain_path>!!#/!!!/</sys_domain_path>
+            <sys_id>cf6e88d3dbc07200c316f27eaf961921</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-06 09:31:09</sys_updated_on>
+            <value>BWP</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>sid</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>PCP</label>
+            <language>en</language>
+            <name>x_agsa_promonitor_metrics</name>
+            <sequence/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-06 09:27:36</sys_created_on>
+            <sys_domain>fddb5f2a3713e200806457d543990e09</sys_domain>
+            <sys_domain_path>!!#/!!!/</sys_domain_path>
+            <sys_id>74cec8d3dbc07200c316f27eaf9619dc</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-06 09:33:22</sys_updated_on>
+            <value>PCP</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>sid</element>
+            <name>x_agsa_promonitor_metrics</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-06 09:26:08</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>a17e84d3dbc07200c316f27eaf9619a0</sys_id>
+            <sys_mod_count>11</sys_mod_count>
+            <sys_name>sid</sys_name>
+            <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+            <sys_update_name>sys_choice_x_agsa_promonitor_metrics_sid</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-02-17 11:00:57</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

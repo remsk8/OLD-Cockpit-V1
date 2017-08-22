@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_grid_canvas_pane">
+    <sys_grid_canvas_pane action="INSERT_OR_UPDATE">
+        <grid_canvas display_value="PA PCP">b30de739dbc03640c316f27eaf9619d8</grid_canvas>
+        <height>10</height>
+        <portal_widget display_value="Created 06/01/2017 17:17:01">d48ce5d7db447200c316f27eaf9619ff</portal_widget>
+        <posx>0</posx>
+        <posy>0</posy>
+        <sys_class_name>sys_grid_canvas_pane</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-06 16:17:01</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>dc8c29d7db447200c316f27eaf961900</sys_id>
+        <sys_mod_count>26</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sys_grid_canvas_pane_dc8c29d7db447200c316f27eaf961900</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-01-09 10:51:51</sys_updated_on>
+        <width>3</width>
+    </sys_grid_canvas_pane>
+</record_update>

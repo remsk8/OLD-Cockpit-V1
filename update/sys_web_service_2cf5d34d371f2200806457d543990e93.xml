@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_web_service">
+    <sys_web_service action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <function_name>insert</function_name>
+        <name>MetricInsert</name>
+        <scoped_name>x_agsa_promonitor_MetricInsert</scoped_name>
+        <script><![CDATA[(function scriptedWebServiceOperation(request, response) {
+	// insert a bunch of metrics
+
+	// Get Values, payload and also parameters
+	var xmlString=unescape(request.payload);
+	gs.include('ProMonitorLib');
+	var promon=new ProMonitorLib();
+	
+	//
+	//var helper =new global.XMLHelper(xmlString);
+	//var obj = helper.toObject();
+	var obj = gs.xmlToJSON(xmlString);
+	var len=0;
+
+	if (obj.set.metric.name == undefined) {
+		len = Object.keys(obj.set.metric).length;
+	} else {
+		len=1;
+	}
+
+	gs.info('DEBUG LEN '+len);
+
+	// foreach metric, extract the list of properties
+	if (len > 1) {
+		for (var j=0;j<len;j++) {
+				// Then insert/update data in "last metric table"
+				if (checkLastMetric(obj.set.metric[j]) == true ){
+					//gs.info('DEBUG Update');
+					LastMetric('update',obj.set.metric[j]);
+				} else {
+					//gs.info('DEBUG Insert');
+					LastMetric('insert',obj.set.metric[j]);
+				}
+				//gs.info('DEBUG Insert in METRICS');
+				InsertMetric(obj.set.metric[j]);
+		}
+	}
+	if (len === 1) {
+		if (checkLastMetric(obj.set.metric) == true ){
+			//gs.info('DEBUG Update');
+			LastMetric('update',obj.set.metric);
+		} else {
+			//gs.info('DEBUG Insert');
+			LastMetric('insert',obj.set.metric);
+		}
+		//gs.info('DEBUG Insert in METRICS');
+		InsertMetric(obj.set.metric);
+	}
+	
+
+	function InsertMetric(obj) {
+		var gr = new GlideRecord('x_agsa_promonitor_metrics');
+		gr.initialize(); 
+		gr.item = obj.item; 
+		gr.instancename = obj.instance; 
+		gr.client = obj.client;
+		gr.user = obj.user;
+		gr.connectorid = obj.connectorId;
+		gr.sid = obj.sid;
+		gr.host = obj.host;
+		gr.target = obj.target;
+		gr.customsource = obj.customsource;
+		gr.configid = obj.configid;
+		gr.description = obj.description;
+		gr.name = obj.name;
+		gr.executiontime=promon.returnUTCsnowDate(obj.measureTime);
+		gr.value = obj.value;
+		gr.samplerate = obj.samplerate;
+		gr.measuretime = obj.measureTime;
+		gr.metric = obj.metricId;
+		gr.module = obj.module;
+		gr.samplemax = obj.samplemax;
+		gr.hasmax = obj.hasmax;
+		gr.isasync = obj.isasync;
+		gr.type = obj.type;
+		gr.unit = obj.unit;
+		gr.unitshort = obj.unitshort;
+		gr.sys_domain = obj.domain;
+		gr.insert();
+	}
+
+	function checkLastMetric(obj) {
+		var gre = new GlideAggregate('x_agsa_promonitor_last_metrics'); 
+		gre.addQuery('connectorid',obj.connectorId);
+		gre.addQuery('metric',obj.metricId);
+		gre.addQuery('target',obj.target);
+		gre.addAggregate('COUNT');
+		gre.query();
+		if (gre.next()) {
+			if (gre.getAggregate('COUNT') != '0') {
+				return true;
+			} else {
+				return false;
+			}	
+		}
+	}
+
+	function LastMetric(operation,obj) {
+		if (operation == 'insert') {
+			var gr = new GlideRecord('x_agsa_promonitor_last_metrics');
+			gr.initialize(); 
+			gr.item = obj.item; 
+			gr.instancename = obj.instance; 
+			gr.client = obj.client;
+			gr.user = obj.user;
+			gr.connectorid = obj.connectorId;
+			gr.sid = obj.sid;
+			gr.host = obj.host;
+			gr.target = obj.target;
+			gr.customsource = obj.customsource;
+			gr.configid = obj.configid;
+			gr.description = obj.description;
+			gr.name = obj.name;
+			gr.value = obj.value;
+			gr.samplerate = obj.samplerate;
+			gr.measuretime = obj.measureTime;
+			gr.metric = obj.metricId;
+			gr.module = obj.module;
+			gr.samplemax = obj.samplemax;
+			gr.hasmax = obj.hasmax;
+			gr.isasync = obj.isasync;
+			gr.type = obj.type;
+			gr.unit = obj.unit;
+			gr.unitshort = obj.unitshort;
+			gr.sys_domain = obj.domain;
+			gr.insert();
+		}
+		if (operation == 'update') {
+			var gre = new GlideRecord('x_agsa_promonitor_last_metrics'); 
+			gre.addQuery('connectorid',obj.connectorId);
+			gre.addQuery('metric',obj.metricId);
+			gre.addQuery('target',obj.target);
+			gre.query();
+			gre.next();
+			gre.item = obj.item; 
+			gre.instancename = obj.instance; 
+			gre.client = obj.client;
+			gre.user = obj.user;
+			gre.sid = obj.sid;
+			gre.host = obj.host;
+			gre.target = obj.target;
+			gre.customsource = obj.customsource;
+			gre.configid = obj.configid;
+			gre.description = obj.description;
+			gre.name = obj.name;
+			gre.value = obj.value;
+			gre.samplerate = obj.samplerate;
+			gre.measuretime = obj.measureTime;
+			gre.module = obj.module;
+			gre.samplemax = obj.samplemax;
+			gre.hasmax = obj.hasmax;
+			gre.isasync = obj.isasync;
+			gre.type = obj.type;
+			gre.unit = obj.unit;
+			gre.sys_domain = obj.domain;
+			gre.unitshort = obj.unitshort;
+			gre.update();
+		}
+	}
+})(request, response);]]></script>
+        <short_description>Get a bunch of Metric !</short_description>
+        <sys_class_name>sys_web_service</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-11-23 17:25:03</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>2cf5d34d371f2200806457d543990e93</sys_id>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>MetricInsert</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sys_web_service_2cf5d34d371f2200806457d543990e93</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-04 14:48:56</sys_updated_on>
+        <wsdl>https://agentilpartnerdev3.service-now.com/x_agsa_promonitor_MetricInsert.do?WSDL</wsdl>
+        <wsdl_compliance>false</wsdl_compliance>
+    </sys_web_service>
+</record_update>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function() {
+  /* widget controller 
+  new Chart(ctx, {
+    data: data,
+    type: 'polarArea',
+    options: options
+});
+  
+  */
+  var c = this;
+	var ctx = document.getElementById("myChart3");
+	var myLineChart = new Chart(ctx, {
+		type: 'polarArea',
+		data: {
+			//labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange","sadf","rtert"],
+			labels: c.data.category,
+			datasets: [{
+					label: 'Current Active USers',
+					data: c.data.catcount,
+					fill: false,
+					borderColor: '#c71f3b',
+					pointBackgroundColor: '#c71f3b',
+					borderWidth: 1
+				}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:false
+					}
+				}]
+			}
+		}
+	});
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>alarmrepartition</id>
+        <internal>false</internal>
+        <link/>
+        <name>AngCharts AlarmRepartition</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object	*/
+  /* e.g., data.table = $sp.getValue('table'); */
+		data.system = $sp.getParameter('system');
+		data.category=[];
+		data.catcount=[];
+		var count = new GlideAggregate('x_agsa_promonitor_alarms');
+		count.addQuery('sid.sid', data.system);
+		count.addQuery('acknowledge', 'false');
+		count.orderByDesc('severity_code');
+		count.addAggregate('COUNT', 'severity_code');
+		count.query();
+		while (count.next()) {
+	    data.category.push(count.severity.toString());
+			data.catcount.push(count.getAggregate('COUNT', 'severity_code'));
+		}
+})();
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-03-28 09:21:50</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ac46155137f5f680806457d543990e52</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>AngCharts AlarmRepartition</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sp_widget_ac46155137f5f680806457d543990e52</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-03-29 12:23:21</sys_updated_on>
+        <template><![CDATA[<canvas id="myChart3" width="300" height="300"/> </canvas>
+]]></template>
+    </sp_widget>
+</record_update>

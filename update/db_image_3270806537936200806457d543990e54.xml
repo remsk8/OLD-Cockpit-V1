@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="db_image">
+    <db_image action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category/>
+        <format>png</format>
+        <height>22</height>
+        <image/>
+        <name>proMonitor_logo.png</name>
+        <size_bytes>1620</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-11-24 15:09:32</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>3270806537936200806457d543990e54</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>proMonitor_logo.png</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>db_image_3270806537936200806457d543990e54</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2016-11-24 15:09:52</sys_updated_on>
+        <thumbnail/>
+        <width>203</width>
+    </db_image>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color/>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <file_name>image</file_name>
+        <image_height/>
+        <image_width/>
+        <size_bytes>1620</size_bytes>
+        <size_compressed>1643</size_compressed>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-11-24 15:09:42</sys_created_on>
+        <sys_domain>03f78309371f2200806457d543990eec</sys_domain>
+        <sys_domain_path>!!#/</sys_domain_path>
+        <sys_id>0bb0806537936200806457d543990e43</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2016-11-24 15:09:42</sys_updated_on>
+        <table_name>ZZ_YYdb_image</table_name>
+        <table_sys_id>3270806537936200806457d543990e54</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="image" sys_id="0bb0806537936200806457d543990e43">0bb0806537936200806457d543990e43</sys_attachment>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-11-24 15:09:42</sys_created_on>
+        <sys_id>4bb0806537936200806457d543990e43</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>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</data>
+        <length>2180</length>
+        <position>1</position>
+        <sys_attachment display_value="image" sys_id="0bb0806537936200806457d543990e43">0bb0806537936200806457d543990e43</sys_attachment>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-11-24 15:09:42</sys_created_on>
+        <sys_id>cbb0806537936200806457d543990e43</sys_id>
+    </sys_attachment_doc>
+</record_update>

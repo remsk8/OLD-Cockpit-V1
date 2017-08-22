@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_agsa_promonitor.ProMonitorReportLib</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>ProMonitorReportLib</name>
+        <script><![CDATA[// @version $Id: ProMonitorReportLib.js 1481 2016-12-07 13:33:08Z rur $
+// table: sys_script_include
+// sysid: a219fa6bdb532600c316f27eaf96194d
+//
+
+var ProMonitorReportLib = Class.create();
+ProMonitorReportLib.prototype = {
+    initialize: function() {
+    },
+    
+    CalculateDaily: function(date,domain,type,debug) {
+		// Domain : is a String representing domain Name
+		// date : is a Date in format YYYY-MM-DD 
+		// type is JOBS by default or transaction when set the string 'transaction'
+		// Debug could be set to 1 or 2 (more details)
+		
+		// Entry Item is the object to be inserted in Report DB table
+		// properties are updated along script execution
+		var entryItem= {
+				domain: domain,
+				system: '',
+				job: '',
+				transaction: '',
+				url: '',
+				count: '',
+				sd: 0,
+				generationdate: date,
+				average: ''
+		};
+
+		// Get items depending on domain and date
+		var targetlist=this._extractMetricData('target',domain,type);
+		var syst=this._extractMetricData('system',domain,type);
+		var counter=0;
+		var list=[];
+		var url;
+		
+		gs.info('DEBUG '+syst.toString()+' '+syst.length);
+
+
+		// Proceed on the cleanup of the table for the specified date and domain
+		this._cleanUp(date,domain,type);
+		
+		// foreach targetlist
+		for (var j=0;j<targetlist.length;j++) {
+			if (debug > 1 ) { gs.info('------------------------Target for each '+targetlist[j]); }
+			for (var c=0;c<syst.length;c++) {
+				if (debug > 1 ) { gs.info('------------------------Syst for each '+syst[c]); }
+				var count=new GlideRecord('x_agsa_promonitor_metrics');
+				if (type == 'transaction') {
+					count.addQuery('name','TRANSACTION_TIMES');
+				} else {
+					count.addQuery('name','SAPJOBS_DURATION');
+				}
+				count.addQuery('sys_created_on','>=',this._dateGenerate(date,'start'));
+				count.addQuery('sys_created_on','<=',this._dateGenerate(date,'end'));
+				count.addQuery('sys_domain.name',domain);
+				count.addQuery('sid',syst[c]);
+				count.addQuery('target',targetlist[j]);
+				count.query();
+				counter=count.getRowCount();
+				if (counter != 0) {
+					while (count.next()) {
+						list.push(parseFloat(count.data));
+					}
+					entryItem.domain=domain;
+					entryItem.system=this._getSystem(syst[c]);
+					entryItem.job=targetlist[j];
+					entryItem.count=counter;
+					entryItem.average=this._average(list);
+					entryItem.sd=this._standardDeviation(list);
+					if (type == 'transaction') {				url="target="+targetlist[j]+"^sys_domain.name="+domain+"^sid="+syst[c]+"^name=TRANSACTION_TIMES^sys_created_onON"+date+"@javascript:gs.dateGenerate('"+date+"','start')@javascript:gs.dateGenerate('"+date+"','end')";
+						} else {	url="target="+targetlist[j]+"^sys_domain.name="+domain+"^sid="+syst[c]+"^name=SAPJOBS_DURATION^sys_created_onON"+date+"@javascript:gs.dateGenerate('"+date+"','start')@javascript:gs.dateGenerate('"+date+"','end')";
+					}
+					url=encodeURIComponent(url.trim());
+					entryItem.url=gs.getProperty('glide.servlet.uri')+"x_agsa_promonitor_metrics_list.do?sysparm_query=GOTO"+url;
+					if (debug >= 1 ) { gs.info(domain+'---'+syst[c]+'---'+targetlist[j]+' c:'+entryItem.count+' a:'+entryItem.average+' URL:'+entryItem.url+' sd:'+entryItem.sd+' l:'+list); }
+					this._insertInJobTable(entryItem,type);
+				}
+				list=[];
+				counter=[];
+			}
+		}
+	},
+	
+	CalculateWeekly: function(week,domain,type,debug) {
+		// Domain : is a String representing domain Name
+		// date : is a week number (integer)
+		// type is JOBS by default or transaction when set the string 'transaction'
+		// Debug could be set to 1 or 2 (more details)
+			
+		// Entry Item is the object to be inserted in Report DB table
+		// properties are updated along script execution
+		var entryItem= {
+				domain: domain,
+				system: '',
+				job: '',
+				url: '',
+				count: '',
+				startDate: new GlideDateTime(),
+				endDate: new GlideDateTime(),
+				sd: 0,
+				weeknumber: week,
+				average: ''
+		};
+		var year=new Date().getFullYear();
+		var ds=this._getDateOfISOWeek(entryItem.weeknumber,year);
+		var month=ds.getMonth()+1;
+		
+		entryItem.startDate.setValue(ds.getFullYear()+'-'+month+'-'+ds.getDate()+' 00:00:0');
+		entryItem.endDate.setValue(ds.getFullYear()+'-'+month+'-'+ds.getDate()+' 23:59:59');
+		//entryItem.startDate.setValue('2016-'+month+'-'+ds.getDate()+' 00:00:0');
+		//entryItem.endDate.setValue('2016-'+month+'-'+ds.getDate()+' 23:59:59');
+		entryItem.endDate.addDaysLocalTime(6);
+		
+		// Get items depending on domain and date
+		var targetlist=this._extractMetricData('target',domain,type);
+		var syst=this._extractMetricData('system',domain,type);
+		var counter=0;
+		var list=[];
+		var url;
+
+		// Proceed on the cleanup of the table for the specified week and domain
+		this._cleanUpW(week,domain,type);
+				
+		// foreach targetlist
+		for (var j=0;j<targetlist.length;j++) {
+			if (debug > 1 ) { gs.info('------------------------Target for each '+targetlist[j]); }
+			for (var c=0;c<syst.length;c++) {
+				if (debug > 1 ) { gs.info('------------------------System for each '+syst[c]); }
+				var count=new GlideRecord('x_agsa_promonitor_metrics');
+				if (type == 'transaction') {
+					count.addQuery('name','TRANSACTION_TIMES');
+				} else {
+					count.addQuery('name','SAPJOBS_DURATION');
+				}
+				count.addQuery('sys_created_on','>=',entryItem.startDate);
+				count.addQuery('sys_created_on','<=',entryItem.endDate);
+				count.addQuery('sys_domain.name',domain);
+				count.addQuery('sid',syst[c]);
+				count.addQuery('target',targetlist[j]);
+				count.query();
+				counter=count.getRowCount();
+				if (counter != 0) {
+					while (count.next()) {
+						list.push(parseFloat(count.data));
+					}
+					entryItem.domain=domain;
+					entryItem.system=this._getSystem(syst[c]);
+					entryItem.job=targetlist[j];
+					entryItem.count=counter;
+					entryItem.average=this._average(list);
+					entryItem.sd=this._standardDeviation(list);
+					if (type == 'transaction') {
+						url="target="+targetlist[j]+"^sys_domain.name="+domain+"^sid="+syst[c]+"^name=TRANSACTION_TIMES^sys_created_onBETWEEN"+entryItem.startDate+"@"+entryItem.endDate;
+						} else {
+						url="target="+targetlist[j]+"^sys_domain.name="+domain+"^sid="+syst[c]+"^name=SAPJOBS_DURATION^sys_created_onBETWEEN"+entryItem.startDate+"@"+entryItem.endDate;
+					}
+					url=encodeURIComponent(url.trim());		
+					entryItem.url=gs.getProperty('glide.servlet.uri')+"x_agsa_promonitor_metrics_list.do?sysparm_query=GOTO"+url;
+					if (debug >= 1 ) { gs.info(domain+'---'+syst[c]+'---'+targetlist[j]+' c:'+entryItem.count+' a:'+entryItem.average+' URL:'+entryItem.url+' sd:'+entryItem.sd+' l:'+list); }
+					this._insertInJobTableW(entryItem,type);
+				}
+				list=[];
+				counter=[];
+			}
+		}
+	},
+	
+	CalculateMonthly: function(monthnumber,domain,type,debug) {
+		// month : is a month number (integer)
+		// Domain : is a String representing domain Name
+		// type is JOBS by default or transaction when set the string 'transaction'
+		// Debug could be set to 1 or 2 (more details)
+			
+		// Entry Item is the object to be inserted in Report DB table
+		// properties are updated along script execution
+		var entryItem= {
+				domain: domain,
+				system: '',
+				job: '',
+				url: '',
+				count: '',
+				startDate: new GlideDate(),
+				endDate: new GlideDate(),
+				sd: 0,
+				monthnumber: monthnumber,
+				average: ''
+		};
+		
+		var year=new Date().getFullYear();
+		//  We need a month start date and end date based on month number
+		var gdt = new GlideDate();
+		gdt.setValue(year+"-"+entryItem.monthnumber+"-01");
+		var month=gdt.getMonthLocalTime().toString();
+		var numberofdays=parseInt(gdt.getDaysInMonthLocalTime())-1;
+		entryItem.startDate.setValue(year+'-'+month+'-01');
+
+		entryItem.endDate.setValue(year+'-'+month+'-01');
+		entryItem.endDate.addDaysUTC(numberofdays);
+
+		// Get items depending on domain and date
+		var targetlist=this._extractMetricData('target',domain,type);
+		var syst=this._extractMetricData('system',domain,type);
+		var counter=0;
+		var list=[];
+		var url;
+		var average=0;
+		var sd=0;		
+		// Proceed on the cleanup of the table for the specified week and domain
+		this._cleanUpM(monthnumber,domain,type);
+				
+		// foreach targetlist
+		for (var j=0;j<targetlist.length;j++) {
+			if (debug > 1 ) { gs.info('------------------------Target for each '+targetlist[j]); }
+			for (var c=0;c<syst.length;c++) {
+				if (debug > 1 ) { gs.info('------------------------System for each '+syst[c]); }
+				var count;
+				count=new GlideRecord('x_agsa_promonitor_daily_job_report');
+				if (type == 'transaction') {
+					count=new GlideRecord('x_agsa_promonitor_daily_transaction_report');
+					count.addQuery('transaction',targetlist[j]);
+
+				} else {
+					count=new GlideRecord('x_agsa_promonitor_daily_job_report');
+					count.addQuery('job',targetlist[j]);
+				}
+				count.addQuery('generationdate','>=',entryItem.startDate);
+				count.addQuery('generationdate','<=',entryItem.endDate);
+				count.addQuery('sys_domain.name',domain);
+				count.addQuery('system.name',syst[c]);
+				count.query();
+				counter=count.getRowCount();
+				if (counter != 0) {
+				while (count.next()) {
+					list.push(parseFloat(count.data));
+					average=average+count.average;
+					sd=sd+count.standarddeviation;
+				}
+				entryItem.domain=domain;
+				entryItem.system=this._getSystem(syst[c]);
+				entryItem.job=targetlist[j];
+				entryItem.count=counter;
+				entryItem.average=average/counter;
+				entryItem.sd=sd/counter;
+				if (type == 'transaction') {
+					url=gs.getProperty('glide.servlet.uri')+"x_agsa_promonitor_daily_transaction_report_list.do?sysparm_query=GOTOtransaction="+targetlist[j]+"^sys_domain.name="+domain+"^system.name="+syst[c]+"^generationdateBETWEEN"+entryItem.startDate+"@"+entryItem.endDate;
+				} else {
+					url=gs.getProperty('glide.servlet.uri')+"x_agsa_promonitor_daily_job_report_list.do?sysparm_query=GOTOjob="+targetlist[j]+"^sys_domain.name="+domain+"^system.name="+syst[c]+"^generationdateBETWEEN"+entryItem.startDate+"@"+entryItem.endDate;
+				}
+				//url=encodeURIComponent(url.trim());		
+				entryItem.url=url;
+				if (debug >= 1 ) { gs.info(domain+'---'+syst[c]+'---'+targetlist[j]+' c:'+entryItem.count+' a:'+entryItem.average+' URL:'+entryItem.url+' sd:'+entryItem.sd); }
+				this._insertInJobTableM(entryItem,type);
+			}
+			list=[];
+			average=0;
+			sd=0;
+			counter=[];
+			}
+		}
+	},
+		
+	_insertInJobTable: function(obj,type) {
+		var gr;
+		if (type == 'transaction' ){
+			gr=new GlideRecord('x_agsa_promonitor_daily_transaction_report');
+		} else {
+			gr=new GlideRecord('x_agsa_promonitor_daily_job_report');
+		}
+		gr.initialize();
+		gr.sys_domain=obj.domain;
+		gr.system=obj.system;
+		if (type == 'transaction' ){
+			gr.transaction=obj.job;
+		} else {
+			gr.job=obj.job;
+		}
+		gr.standarddeviation=obj.sd;
+		gr.count=obj.count;
+		gr.average=obj.average;
+		gr.generationdate=obj.generationdate;
+		gr.list_metrics=obj.url;
+		gr.insert();
+	},
+	
+	_insertInJobTableW: function(obj,type) {
+		var gr;
+		if (type == 'transaction' ){
+			gr=new GlideRecord('x_agsa_promonitor_weekly_transaction_report');
+		} else {
+			gr=new GlideRecord('x_agsa_promonitor_weekly_job_report');
+		}
+		gr.initialize();
+		gr.sys_domain=obj.domain;
+		gr.system=obj.system;
+		if (type == 'transaction' ){
+			gr.transaction=obj.job;
+		} else {
+			gr.job=obj.job;
+		}
+		gr.job=obj.job;
+		gr.standarddeviation=obj.sd;
+		gr.count=obj.count;
+		gr.average=obj.average;
+		gr.start_date=this._toUTC(obj.startDate);
+		gr.end_date=this._toUTC(obj.endDate);
+		gr.weeknumber=obj.weeknumber;
+		gr.list_metric=obj.url;
+		gr.insert();
+	},
+	
+	_insertInJobTableM: function(obj,type) {
+		var gr;
+		if (type == 'transaction' ){
+			gr=new GlideRecord('x_agsa_promonitor_monthly_transaction_report');
+		} else {
+			gr=new GlideRecord('x_agsa_promonitor_monthly_job_report');
+		}
+		gr.initialize();
+		gr.sys_domain=obj.domain;
+		gr.system=obj.system;
+		if (type == 'transaction' ){
+			gr.transaction=obj.job;
+		} else {
+			gr.job=obj.job;
+		}
+		gr.job=obj.job;
+		gr.standarddeviation=obj.sd;
+		gr.count=obj.count;
+		gr.average=obj.average;
+		gr.start_date=this._toUTC(obj.startDate);
+		gr.end_date=this._toUTC(obj.endDate);
+		gr.monthnumber=obj.monthnumber;
+		gr.list_metrics=obj.url;
+		gr.insert();
+	},
+	
+	_cleanUp: function(date,domain,type) {
+		var cleaner;
+		if (type == 'transaction') {
+			cleaner=new GlideRecord('x_agsa_promonitor_daily_transaction_report');
+		} else {
+			cleaner=new GlideRecord('x_agsa_promonitor_daily_job_report');
+		}
+		cleaner.addQuery('generationdate','=',date);
+		cleaner.addQuery('sys_domain.name',domain);
+		cleaner.deleteMultiple();
+	},
+	
+	_cleanUpW: function(week,domain,type) {
+		var cleaner;
+		if (type == 'transaction') {
+			cleaner=new GlideRecord('x_agsa_promonitor_weekly_transaction_report');
+		} else {
+			cleaner=new GlideRecord('x_agsa_promonitor_weekly_job_report');
+		}
+		cleaner.addQuery('weeknumber',week);
+		cleaner.addQuery('sys_domain.name',domain);
+		cleaner.deleteMultiple();
+	},
+	
+	_cleanUpM: function(monthnumber,domain,type) {
+		var cleaner;
+		if (type == 'transaction') {
+			cleaner=new GlideRecord('x_agsa_promonitor_monthly_transaction_report');
+		} else {
+			cleaner=new GlideRecord('x_agsa_promonitor_monthly_job_report');
+		}
+		cleaner.addQuery('monthnumber',monthnumber);
+		cleaner.addQuery('sys_domain.name',domain);
+		cleaner.deleteMultiple();
+	},
+		
+	_extractMetricData: function(type,domain,typet) {
+		var myArray=[];
+		var target='';
+		
+		var gr=new GlideAggregate('x_agsa_promonitor_report_config');
+		if (typet == 'transaction') {
+			gr.addQuery('type','Transaction');
+		} else {
+			gr.addQuery('type','Job');
+		}
+		gr.addQuery('sys_domain.name',domain);
+		if (type == 'target') {
+			gr.addAggregate('COUNT', 'name');
+		} else 	if (type == 'system') {
+			gr.addAggregate('COUNT', 'system');
+		}
+		gr.query();
+		while (gr.next()) {
+			if (type == 'target') {
+				target = gr.name.toString();
+			} else	if (type == 'system') {
+				target = gr.system.name.toString();
+			}
+
+		   myArray.push(target.toString());
+		}
+		return myArray;
+	},
+
+	_getSystem: function(sid) {
+			var gr=new GlideRecord('cmdb_ci_appl_sap_system');
+			gr.get('sid',sid);
+			return gr.sys_id;
+	},
+
+	_standardDeviation: function(values){
+		var avg = this._average(values);
+		var squareDiffs = values.map(function(value){
+			var diff = value - avg;
+			var sqrDiff = diff * diff;
+			return sqrDiff;
+		});
+		var avgSquareDiff = this._average(squareDiffs);
+		var stdDev = Math.sqrt(avgSquareDiff);
+		return stdDev;
+	},
+
+	_average: function(data){
+		var sum = data.reduce(function(sum, value){
+			return sum + value;
+		}, 0);
+		var avg = sum / data.length;
+		return avg;
+	},
+
+	_dateGenerate: function(date, range) {  
+		if (!range)  
+			range = '12:00:00';  
+	  
+		var gdt = new GlideDateTime();  
+		if (range.equals("start"))  
+			gdt.setDisplayValueInternal(date + " 00:00:00");  
+		else if (range.equals("end"))  
+			gdt.setDisplayValueInternal(date + " 23:59:59");  
+		else  
+			gdt.setDisplayValueInternal(date + " " + range);  
+	  
+		return gdt;  
+	}, 
+	
+	_getDateOfISOWeek: function(w,y) {
+		var simple = new Date(y, 0, 1 + (w - 1) * 7);
+		var dow = simple.getDay();
+		var ISOweekStart = simple;
+		if (dow <= 4)
+			ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
+		else
+			ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
+		return ISOweekStart;
+	},
+	
+	_toUTC: function(date) {	
+		var result=date.getNumericValue()-date.getTZOffset();
+		var mydate=new GlideDateTime();
+		mydate.setValue(result);
+		return mydate;
+	},
+	
+	answerSystem: function(){
+		return "ECT";
+	},
+
+    type: 'ProMonitorReportLib'
+};
+
+
+
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-12-01 09:43:22</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a219fa6bdb532600c316f27eaf96194d</sys_id>
+        <sys_mod_count>145</sys_mod_count>
+        <sys_name>ProMonitorReportLib</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sys_script_include_a219fa6bdb532600c316f27eaf96194d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-05 14:56:32</sys_updated_on>
+    </sys_script_include>
+</record_update>

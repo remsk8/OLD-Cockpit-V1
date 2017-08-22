@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update node_type="sys_grid_canvas" unload_date="2017-08-22 12:56:56">
+    <sys_grid_canvas action="INSERT_OR_UPDATE">
+        <legacy_page/>
+        <name>PA New Tab</name>
+        <sys_class_name>sys_grid_canvas</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-08-16 07:46:44</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>caa8c3e6db24cb00c316f27eaf961994</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>PA New Tab</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sys_grid_canvas_caa8c3e6db24cb00c316f27eaf961994</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-08-16 07:46:44</sys_updated_on>
+        <related_items_node>
+            <sys_grid_canvas_pane action="INSERT_OR_UPDATE">
+                <grid_canvas display_value="PA New Tab">caa8c3e6db24cb00c316f27eaf961994</grid_canvas>
+                <height>16</height>
+                <portal_widget display_value="">daa8cfe6db24cb00c316f27eaf96191b</portal_widget>
+                <posx>6</posx>
+                <posy>26</posy>
+                <sys_class_name>sys_grid_canvas_pane</sys_class_name>
+                <sys_created_by>admin</sys_created_by>
+                <sys_created_on>2017-08-16 07:46:44</sys_created_on>
+                <sys_customer_update>false</sys_customer_update>
+                <sys_id>92a8cfe6db24cb00c316f27eaf961921</sys_id>
+                <sys_mod_count>0</sys_mod_count>
+                <sys_name/>
+                <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+                <sys_policy/>
+                <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+                <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+                <sys_update_name>sys_grid_canvas_pane_92a8cfe6db24cb00c316f27eaf961921</sys_update_name>
+                <sys_updated_by>admin</sys_updated_by>
+                <sys_updated_on>2017-08-16 07:46:44</sys_updated_on>
+                <width>6</width>
+            </sys_grid_canvas_pane>
+            <sys_grid_canvas_pane action="INSERT_OR_UPDATE">
+                <grid_canvas display_value="PA New Tab">caa8c3e6db24cb00c316f27eaf961994</grid_canvas>
+                <height>16</height>
+                <portal_widget display_value="">16a8cfe6db24cb00c316f27eaf961918</portal_widget>
+                <posx>0</posx>
+                <posy>10</posy>
+                <sys_class_name>sys_grid_canvas_pane</sys_class_name>
+                <sys_created_by>admin</sys_created_by>
+                <sys_created_on>2017-08-16 07:46:44</sys_created_on>
+                <sys_customer_update>false</sys_customer_update>
+                <sys_id>d2a8cfe6db24cb00c316f27eaf961920</sys_id>
+                <sys_mod_count>0</sys_mod_count>
+                <sys_name/>
+                <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+                <sys_policy/>
+                <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+                <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+                <sys_update_name>sys_grid_canvas_pane_d2a8cfe6db24cb00c316f27eaf961920</sys_update_name>
+                <sys_updated_by>admin</sys_updated_by>
+                <sys_updated_on>2017-08-16 07:46:44</sys_updated_on>
+                <width>6</width>
+            </sys_grid_canvas_pane>
+            <sys_grid_canvas_pane action="INSERT_OR_UPDATE">
+                <grid_canvas display_value="PA New Tab">caa8c3e6db24cb00c316f27eaf961994</grid_canvas>
+                <height>146</height>
+                <portal_widget display_value="">02a8cfe6db24cb00c316f27eaf961915</portal_widget>
+                <posx>0</posx>
+                <posy>52</posy>
+                <sys_class_name>sys_grid_canvas_pane</sys_class_name>
+                <sys_created_by>admin</sys_created_by>
+                <sys_created_on>2017-08-16 07:46:44</sys_created_on>
+                <sys_customer_update>false</sys_customer_update>
+                <sys_id>d6a8cfe6db24cb00c316f27eaf961921</sys_id>
+                <sys_mod_count>0</sys_mod_count>
+                <sys_name/>
+                <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+                <sys_policy/>
+                <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+                <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+                <sys_update_name>sys_grid_canvas_pane_d6a8cfe6db24cb00c316f27eaf961921</sys_update_name>
+                <sys_updated_by>admin</sys_updated_by>
+                <sys_updated_on>2017-08-16 07:46:44</sys_updated_on>
+                <width>12</width>
+            </sys_grid_canvas_pane>
+        </related_items_node>
+    </sys_grid_canvas>
+</record_update>

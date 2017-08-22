@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[displayLoader(true);
+embedReportByParams(jQuery("span[id=report]"), {jvar_report_id:gel("report_sys_id").value});
+setTimeout(function(){displayLoader(false);},2000);
+function displayLoader(show) {
+	  var winH = $j(window).height();
+	  var winW = $j(window).width();
+	  $j("#div_company_loader").css({
+		  opacity: 0.5,
+		  top: 0,
+		  left: 0,
+		  width: "100%",
+		  height: "100%"
+	  });
+	$j("#img_company_loader").css({
+		top: winH/2,
+		left: winW/2
+	});
+  if (show) {
+	  $j("#div_company_loader").show();
+	  $j("#img_company_loader").show();
+  } else {
+	  $j("#div_company_loader").hide();
+	  $j("#img_company_loader").hide();
+  }
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_agsa_promonitor_show_report.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"></link>
+  <g:requires name="scripts/GlideV2ChartingIncludes.js" includes="true"/>
+  <g2:evaluate>
+	  var report = RP.getParameterValue('report');
+  </g2:evaluate>
+<input type="hidden" id="report_sys_id" name="report_sys_id" value="$[report]" />
+  <span id="report"/>
+  <style>
+	  #img_company_loader {
+		  display:none;
+		  position:absolute;
+		  z-index:1000;
+		  color: white;
+	  }
+	  #div_company_loader {
+		  display:none;
+		  position:fixed;
+		  background:#000;
+		  z-index:999;
+	  }
+  </style>
+  <div id="div_company_loader">
+  <i id="img_company_loader" class="fa fa-spinner fa-pulse fa-4x"></i>
+ </div>
+</j:jelly>]]></html>
+        <name>show_report</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-20 16:24:27</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>8e44b5fb37d4f600806457d543990eea</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>show_report</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sys_ui_page_8e44b5fb37d4f600806457d543990eea</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-03-24 14:23:34</sys_updated_on>
+    </sys_ui_page>
+</record_update>

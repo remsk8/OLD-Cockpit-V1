@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Last Metrics" max_length="40" name="x_agsa_promonitor_last_metrics" sizeclass="5167" type="collection">
+        <element label="Client" max_length="100" name="client" type="string"/>
+        <element label="ConfigId" max_length="40" name="configid" type="string"/>
+        <element label="ConnectorId" max_length="40" name="connectorid" type="string"/>
+        <element label="CustomSource" max_length="40" name="customsource" type="string"/>
+        <element label="Data" max_length="40" name="data" type="string"/>
+        <element label="Description" max_length="100" name="description" type="string"/>
+        <element label="HasMax" max_length="40" name="hasmax" type="boolean"/>
+        <element label="Host" max_length="100" name="host" type="string"/>
+        <element label="InstanceName" max_length="40" name="instancename" type="string"/>
+        <element label="isAsync" max_length="40" name="isasync" type="boolean"/>
+        <element label="Item" max_length="40" name="item" type="string"/>
+        <element label="MeasureTime" max_length="40" name="measuretime" type="string"/>
+        <element label="Metric" max_length="40" name="metric" type="string"/>
+        <element label="Module" max_length="40" name="module" type="string"/>
+        <element label="Name" max_length="40" name="name" type="string"/>
+        <element label="SampleMax" max_length="40" name="samplemax" type="integer"/>
+        <element label="SampleRate" max_length="40" name="samplerate" type="integer"/>
+        <element label="Sid" max_length="40" name="sid" type="string"/>
+        <element label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
+        <element label="Domain Path" max_length="255" name="sys_domain_path" type="domain_path"/>
+        <element label="Target" max_length="100" name="target" type="string"/>
+        <element label="Type" max_length="40" name="type" type="string"/>
+        <element label="Unit" max_length="40" name="unit" type="string"/>
+        <element label="UnitShort" max_length="10" name="unitshort" type="string"/>
+        <element label="User" max_length="100" name="user" type="string"/>
+        <element label="Value" max_length="100" name="value" type="string"/>
+        <index name="index">
+            <element name="sys_domain_path"/>
+        </index>
+        <index name="index2">
+            <element name="sys_domain"/>
+        </index>
+    </element>
+</database>

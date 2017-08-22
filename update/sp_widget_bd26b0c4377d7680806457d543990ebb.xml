@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>generatealarmpie</id>
+        <internal>false</internal>
+        <link/>
+        <name>GenerateAlarmPie</name>
+        <option_schema>[{"displayValue":"Report","name":"report","label":"Report","type":"reference","value":"sys_report","ed":{"reference":"sys_report"}},{"name":"height","label":"Height","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+  data.system = $sp.getParameter('system');
+  data.report = "x_agsa_promonitor_GenAlarmRepartition.do?system="+data.system;
+  if (options.height) {
+  data.height = options.height +"px";
+  } else {
+  data.height = "300px";
+  }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-03-24 09:49:09</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>bd26b0c4377d7680806457d543990ebb</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>GenerateAlarmPie</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sp_widget_bd26b0c4377d7680806457d543990ebb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-03-28 08:44:43</sys_updated_on>
+        <template><![CDATA[<div>
+  <iframe ng-src="{{data.report}}" scrolling="no" frameborder="0" height="{{data.height}}" width="100%"></iframe>
+</div>]]></template>
+    </sp_widget>
+</record_update>

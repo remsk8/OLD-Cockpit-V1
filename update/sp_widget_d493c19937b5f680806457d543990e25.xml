@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+	var ctx = document.getElementById("myChart2");
+	var myLineChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			//labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange","sadf","rtert"],
+			labels: c.data.myDate2,
+			datasets: [{
+					label: 'Current Active USers',
+					data: c.data.myValue2,
+					fill: false,
+					borderColor: '#c71f3b',
+					pointBackgroundColor: '#c71f3b',
+					borderWidth: 1
+				}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:false
+					}
+				}]
+			}
+		}
+	});
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>connectedusers</id>
+        <internal>false</internal>
+        <link/>
+        <name>AngCharts ConnectedUsers</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+		data.system = $sp.getParameter('system');
+		data.myValue2=[];
+		data.myDate2=[];
+		var getData2=new GlideRecord('x_agsa_promonitor_metrics')
+		getData2.addEncodedQuery('name=USERS_ACTIVE_COUNT^sid='+data.system);
+		getData2.orderByDesc('sys_created_on');
+		getData2.setLimit(30);
+		getData2.query();
+		while (getData2.next()) {
+			data.myValue2.push(parseInt(getData2.data));
+			data.myDate2.push(getData2.sys_created_on.getDisplayValue().split(' ')[1].toString());
+		}
+})();
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-03-28 08:00:10</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>d493c19937b5f680806457d543990e25</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>AngCharts ConnectedUsers</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sp_widget_d493c19937b5f680806457d543990e25</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-05 08:26:28</sys_updated_on>
+        <template><![CDATA[<canvas id="myChart2" width="300" height="300"/>
+Connected users]]></template>
+    </sp_widget>
+</record_update>

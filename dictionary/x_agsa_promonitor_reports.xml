@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Reports" max_length="40" name="x_agsa_promonitor_reports" type="collection">
+        <element label="Link" max_length="4000" name="link" type="glide_action_list"/>
+        <element label="ReportContent" max_length="10000" name="reportcontent" type="string"/>
+        <element label="Domain" max_length="32" name="ss_domain" type="domain_id"/>
+        <index name="index">
+            <element name="ss_domain"/>
+        </index>
+    </element>
+</database>

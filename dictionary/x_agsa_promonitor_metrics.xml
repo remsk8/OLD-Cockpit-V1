@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Metrics" max_length="40" name="x_agsa_promonitor_metrics" sizeclass="32303" type="collection">
+        <element label="Client" max_length="100" name="client" type="string"/>
+        <element label="ConfigId" max_length="100" name="configid" type="string"/>
+        <element label="ConnectorId" max_length="40" name="connectorid" type="string"/>
+        <element label="CustomSource" max_length="100" name="customsource" type="string"/>
+        <element label="Data" max_length="40" name="data" type="integer"/>
+        <element label="Description" max_length="255" name="description" type="string"/>
+        <element label="Job End Time" max_length="40" name="executiontime" type="glide_date_time"/>
+        <element label="HasMax" max_length="40" name="hasmax" type="boolean"/>
+        <element label="Host" max_length="100" name="host" type="string"/>
+        <element label="Instance" max_length="70" name="instance" type="string"/>
+        <element label="InstanceName" max_length="100" name="instancename" type="string"/>
+        <element label="IsAsync" max_length="40" name="isasync" type="boolean"/>
+        <element label="Item" max_length="100" name="item" type="string"/>
+        <element label="MeasureTime" max_length="40" name="measuretime" type="string"/>
+        <element label="Metric" max_length="100" name="metric" type="string"/>
+        <element label="Module" max_length="100" name="module" type="string"/>
+        <element label="Name" max_length="100" name="name" type="string"/>
+        <element label="SampleMax" max_length="100" name="samplemax" type="string"/>
+        <element label="SampleRate" max_length="100" name="samplerate" type="string"/>
+        <element choice="3" default="Empty" label="Sid" max_length="100" name="sid" type="choice">
+            <choice>
+                <element label="BWP" value="BWP"/>
+                <element label="HDB" value="HDB"/>
+                <element label="ID2" value="ID2"/>
+                <element label="PCP" value="PCP"/>
+                <element label="S4H" value="S4H"/>
+                <element label="QAS" sequence="0" value="QAS"/>
+                <element label="ECT" sequence="1" value="ECT"/>
+            </choice>
+        </element>
+        <element label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
+        <element label="Domain Path" max_length="255" name="sys_domain_path" type="domain_path"/>
+        <element label="Target" max_length="100" name="target" type="string"/>
+        <element label="Type" max_length="40" name="type" type="integer"/>
+        <element label="Unit" max_length="20" name="unit" type="string"/>
+        <element label="UnitShort" max_length="20" name="unitshort" type="string"/>
+        <element label="User" max_length="50" name="user" type="string"/>
+        <element label="Value" max_length="50" name="value" type="string"/>
+        <index name="index">
+            <element name="sys_domain_path"/>
+        </index>
+        <index name="index2">
+            <element name="sys_created_on"/>
+            <element name="data"/>
+            <element name="name"/>
+            <element name="target"/>
+            <element name="value"/>
+        </index>
+        <index name="index3">
+            <element name="sys_domain"/>
+        </index>
+    </element>
+</database>

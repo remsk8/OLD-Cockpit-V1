@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element attributes="document_viewer_audit=all,global_search_config_handler=KnowledgeArticle,attachment_index=true,text_index_attachment_displayed=true,text_index_enable_idf=true,synch_attachments=true,text_index_translations=true,use_document_viewer=true,text_index_filter_junk=false" audit="true" label="Knowledge" max_length="40" name="kb_knowledge" text_index="true" type="collection">
+        <element label="Company" max_length="32" name="u_company" reference="core_company" type="reference"/>
+        <index name="index">
+            <element name="u_company"/>
+        </index>
+    </element>
+</database>

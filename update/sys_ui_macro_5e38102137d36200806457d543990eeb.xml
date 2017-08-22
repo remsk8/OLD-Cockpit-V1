@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>layout</category>
+        <description>4 equal width columns with header</description>
+        <media_type/>
+        <name>layout_4_across_DETAILS</name>
+        <scoped_name>x_agsa_promonitor_layout_4_across_DETAILS</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-11-24 16:52:43</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>5e38102137d36200806457d543990eeb</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>layout_4_across_DETAILS</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sys_ui_macro_5e38102137d36200806457d543990eeb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2016-11-24 16:57:37</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<j:jelly trim="true" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<link href="2778902137d36200806457d543990e7c.cssdbx" rel="stylesheet" type="text/css" />
+	<table border="0" cellspacing="6" id="${jvar_name}" width="100%">
+		<tr>
+			<td id="dropzone0" dropzone="true" valign="top" width="100%"/>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td id="dropzone1" dropzone="true" valign="top" width="25%"/>
+			<td id="dropzone2" dropzone="true" valign="top" width="25%"/>
+			<td id="dropzone3" dropzone="true" valign="top" width="25%"/>
+			<td id="dropzone4" dropzone="true" valign="top" width="25%"/>
+		</tr>
+	</table>
+	<table style="width: 100%; height: 100%;">
+			<tr>
+				<td id="dropzone5" dropzone="true" valign="top" width="25%"/>
+				<td id="dropzone6" dropzone="true" valign="top"/>
+			</tr>
+	</table>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

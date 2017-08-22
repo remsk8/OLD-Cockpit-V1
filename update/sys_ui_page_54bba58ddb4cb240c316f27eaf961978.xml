@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[function createConfig() {
+	var t = gel("QUERY:name=TRANSACTION_TIMES^ORname=SAPJOBS_DURATION").value;
+	var getv=new GlideRecord('x_agsa_promonitor_last_metrics');
+	getv.addQuery('sys_id',t);
+	getv.query();
+	getv.next();
+	g_form.setValue('name',getv.target);
+	if (getv.name.indexOf('JOBS') != -1) {
+		g_form.setValue('type','Job');
+	} else {
+		g_form.setValue('type','Transaction');
+	}
+	// getting system with Sid
+	var gr=new GlideRecord('cmdb_ci_appl_sap_system');
+	gr.addQuery('sid',getv.sid);
+	gr.query();
+	gr.next();
+	g_form.setValue('system',gr.sys_id);
+	GlideDialogWindow.get().destroy();
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_agsa_promonitor_create_report_config.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<br/>
+	Please Select a Job or a transaction. A report Config will be generated based on it.
+	<br/>
+	<br/>
+	<g:ui_reference name="QUERY:name=TRANSACTION_TIMES^ORname=SAPJOBS_DURATION" id="lmetric" table="x_agsa_promonitor_last_metrics" value="${jvar_ctask}"/>
+	<br/>
+	<br/>
+	 <g:dialog_buttons_ok_cancel ok_text="Create Config" ok="return createConfig()" ok_type="button" cancel_type="button" />
+</j:jelly>]]></html>
+        <name>create_report_config</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-12-30 16:27:12</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>54bba58ddb4cb240c316f27eaf961978</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_name>create_report_config</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sys_ui_page_54bba58ddb4cb240c316f27eaf961978</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2016-12-30 17:32:40</sys_updated_on>
+    </sys_ui_page>
+</record_update>

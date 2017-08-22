@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Job status" max_length="40" name="x_agsa_promonitor_job_status" type="collection">
+        <element label="ConnectorId" max_length="50" name="connectorid" type="string"/>
+        <element label="Duration" max_length="40" name="duration" type="integer"/>
+        <element label="Last Measure" max_length="40" name="last_measure" type="glide_date_time"/>
+        <element label="MetricId" max_length="50" name="metricid" type="string"/>
+        <element label="Sid" max_length="50" name="sid" type="string"/>
+        <element label="Status" max_length="50" name="status" type="string"/>
+        <element label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
+        <element label="Domain Path" max_length="255" name="sys_domain_path" type="domain_path"/>
+        <element label="Target" max_length="100" name="target" type="string"/>
+        <element label="Value" max_length="50" name="value" type="string"/>
+        <index name="index">
+            <element name="sys_domain_path"/>
+        </index>
+        <index name="index2">
+            <element name="sys_domain"/>
+        </index>
+    </element>
+</database>

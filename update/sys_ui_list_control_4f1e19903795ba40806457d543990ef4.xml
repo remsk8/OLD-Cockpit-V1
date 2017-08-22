@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="e58caa9b379fe200806457d543990e08" table="sys_ui_list_control">
+    <sys_ui_list_control action="INSERT_OR_UPDATE">
+        <columns_condition/>
+        <edit_condition/>
+        <edit_default_filter/>
+        <edit_roles>x_agsa_promonitor.admin</edit_roles>
+        <empty_condition/>
+        <filter_condition/>
+        <filter_roles/>
+        <hierarchical_lists>false</hierarchical_lists>
+        <label>Supported Companies</label>
+        <link_condition/>
+        <link_roles/>
+        <list_edit_insert_row>false</list_edit_insert_row>
+        <list_edit_ref_qual_tag/>
+        <list_edit_type/>
+        <name>sys_user</name>
+        <new_condition/>
+        <new_roles>x_agsa_promonitor.admin</new_roles>
+        <omit_columns_if_empty>false</omit_columns_if_empty>
+        <omit_drilldown_link>false</omit_drilldown_link>
+        <omit_edit_button>false</omit_edit_button>
+        <omit_filters>false</omit_filters>
+        <omit_if_empty>false</omit_if_empty>
+        <omit_links>false</omit_links>
+        <omit_new_button>false</omit_new_button>
+        <related_list>x_agsa_promonitor_m2m_companies_support.user</related_list>
+        <sys_class_name>sys_ui_list_control</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-02-28 10:50:50</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>e58caa9b379fe200806457d543990e08</sys_domain>
+        <sys_domain_path>!!$/!!#/</sys_domain_path>
+        <sys_id>4f1e19903795ba40806457d543990ef4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>sys_user</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>sys_ui_list_control_4f1e19903795ba40806457d543990ef4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-02-28 10:50:50</sys_updated_on>
+    </sys_ui_list_control>
+</record_update>

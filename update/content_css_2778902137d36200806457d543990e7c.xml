@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="content_css">
+    <content_css action="INSERT_OR_UPDATE">
+        <name>ProMonitorStyle</name>
+        <style>&#13;
+th {&#13;
+	text-align: left;&#13;
+	padding: 4px;&#13;
+	text-transform: uppercase;&#13;
+	background-color: #b2c2cf;&#13;
+	border-left: 1px solid rgba(128,128,128,0.3);&#13;
+}&#13;
+&#13;
+#dropzone6 .tabs2_list .list_div table {&#13;
+	background-color: #242f36;&#13;
+	border: none;&#13;
+	font-size:1em;&#13;
+	box-shadow: 0 6px 6px -3px #242f36;&#13;
+}&#13;
+&#13;
+#dropzone6 .tabs2_list .list_div th, #dropzone6 .tabs2_list .list_div td {&#13;
+	padding: 7px 15px!important;&#13;
+	text-align: left;&#13;
+	border-bottom: 1px solid rgba(91,108,118,0.4);&#13;
+	border-top: none;&#13;
+    -webkit-transition: all 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000); &#13;
+	-moz-transition: all 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000); &#13;
+    -o-transition: all 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000); &#13;
+    transition: all 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000); /* easeOutQuint */&#13;
+}&#13;
+&#13;
+#dropzone6 .tabs2_list .list_div td:nth-child(even) {&#13;
+	background-color: #344047;&#13;
+	color: white!important;&#13;
+}&#13;
+#dropzone6 .tabs2_list .list_div td.col-control, #dropzone6 .tabs2_list .list_div tr.list_odd td:nth-child(5), #dropzone6 .tabs2_list .list_div tr.list_even td:nth-child(5) {&#13;
+    background-color:#242f36;&#13;
+    color:#82bdff;&#13;
+}&#13;
+&#13;
+#dropzone6 .tabs2_list .list_div tr.list_odd td:nth-child(5) a, #dropzone6 .tabs2_list .list_div tr.list_even td:nth-child(5) a {&#13;
+    color:white;&#13;
+}&#13;
+&#13;
+#dropzone6 .tabs2_list .tabs2_list .list_div th {&#13;
+	font-weight: bold;&#13;
+}&#13;
+&#13;
+#dropzone6 .tabs2_list .tabs2_list .list_div button  {&#13;
+	padding:6px 0 6px 0;&#13;
+	width:90px;&#13;
+	border-radius:2px;&#13;
+}&#13;
+&#13;
+#dropzone6 .tabs2_list .tabs2_list .list_div tr.header {&#13;
+	 background-color:#B2C2CF;&#13;
+}&#13;
+	&#13;
+#dropzone6 .tabs2_list .tabs2_list .list_div th {&#13;
+	text-align: left;&#13;
+	padding: 15px;&#13;
+	text-transform: uppercase;&#13;
+	background-color: #b2c2cf;&#13;
+	border-left: 1px solid rgba(128,128,128,0.3);&#13;
+}&#13;
+&#13;
+#dropzone6 .tabs2_list .tabs2_list .list_div th a {&#13;
+    color:#344047;&#13;
+}&#13;
+	&#13;
+#dropzone6 .tabs2_list .tabs2_list .list_div th:first-child {&#13;
+	border-left:none;&#13;
+}&#13;
+&#13;
+#dropzone6 .tabs2_list .tabs2_list .list_div .formlink {&#13;
+    color:white;&#13;
+}&#13;
+	&#13;
+#dropzone6 .tabs2_list .tabs2_list .list_div table button {&#13;
+	border:none!important;&#13;
+	border-radius:0!important;&#13;
+	width:100%;&#13;
+	color: white!important;&#13;
+	text-shadow: 0 1px 4px #242f36;&#13;
+	letter-spacing: 1px;&#13;
+}&#13;
+	&#13;
+HTML[data-doctype=true] .drag_section, HTML[data-doctype=true] .drag_section_hilight_neighbors .tabs2_list .tabs2_list .list_div {&#13;
+	border-radius:0!important;&#13;
+	overflow:visible!important;&#13;
+}&#13;
+&#13;
+#dropzone6 table.list_table tbody tr td a:not(.icon-info) {&#13;
+	color: white!important;&#13;
+	text-decoration: none!important;&#13;
+	border-bottom: 1px dotted white;&#13;
+	position: relative;&#13;
+	top: 1px;&#13;
+}&#13;
+&#13;
+#dropzone6 table.list_table tbody tr td:nth-child(3):hover, #dropzone6 table.list_table tbody tr td:nth-child(5):hover {&#13;
+	background-color:#455464!important;&#13;
+        color:#82bdff;&#13;
+&#13;
+}&#13;
+&#13;
+HTML[data-doctype=true] BODY td.sstatus:nth-child(even) {&#13;
+	background-color: #344047;&#13;
+	color: white!important;&#13;
+}	&#13;
+&#13;
+HTML[data-doctype=true] [data-formname=home] table.sstatus {&#13;
+	width: 100%;&#13;
+	border-radius:0!important;&#13;
+	overflow:visible!important;&#13;
+	border-spacing: 0px!important;&#13;
+	background-color: #242f36!important;&#13;
+	border: none;&#13;
+	font-size:1em;&#13;
+	box-shadow: 0 6px 6px -3px #242f36;&#13;
+}&#13;
+&#13;
+HTML[data-doctype=true] [data-formname=home] #dropzone6 table, HTML[data-doctype=true] [data-formname=home] #dropzone5 table {&#13;
+        border-spacing:0px!important;&#13;
+}&#13;
+&#13;
+th.sstatus {&#13;
+	height: 50px;&#13;
+}&#13;
+&#13;
+th.sstatus, td.sstatus {&#13;
+	padding: 7px 15px!important;&#13;
+	text-align: left;&#13;
+	border-bottom: 1px solid rgba(91,108,118,0.4);&#13;
+	border-top: none;&#13;
+}&#13;
+&#13;
+tr.header {&#13;
+	 background-color:#B2C2CF;&#13;
+}&#13;
+	&#13;
+th:first-child {&#13;
+	border-left:none;&#13;
+}&#13;
+&#13;
+&#13;
+HTML[data-doctype=true] [data-formname=home] table.sstatus th {&#13;
+       padding:7px 15px!important;&#13;
+}&#13;
+&#13;
+&#13;
+HTML[data-doctype=true] [data-formname=home] #dropzone6 .btn-icon {&#13;
+        height:20px;&#13;
+        line-height:21px;&#13;
+}&#13;
+&#13;
+#dropzone6 td.vt.vt-spacer {&#13;
+       display:none;&#13;
+}</style>
+        <sys_class_name>content_css</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-11-24 16:53:42</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>2778902137d36200806457d543990e7c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>ProMonitorStyle</sys_name>
+        <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+        <sys_update_name>content_css_2778902137d36200806457d543990e7c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2016-11-24 16:54:00</sys_updated_on>
+        <type>local</type>
+        <url/>
+    </content_css>
+</record_update>
