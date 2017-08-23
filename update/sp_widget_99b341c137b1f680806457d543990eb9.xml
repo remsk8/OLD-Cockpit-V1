@@ -11,7 +11,7 @@
 			//labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange","sadf","rtert"],
 			labels: c.data.myDate,
 			datasets: [{
-					label: 'ABAP SPOOL Response Time in MS',
+					label: 'ABAP Response Time in MS',
 					data: c.data.value,
 					fill: false,
 					borderColor: '#c71f3b',
@@ -51,8 +51,8 @@
 		data.system = $sp.getParameter('system');
 		data.value=[];
 		data.myDate=[];
-		var getData=new GlideRecord('x_agsa_promonitor_metrics')
-		getData.addEncodedQuery('name=ABAP_RESPONSE_TIME^targetLIKEDIALOG : 30 min^sid='+data.system);
+		var getData=new GlideRecord('x_agsa_promonitor_metrics');
+		getData.addEncodedQuery('name=ABAP_RESPONSE_TIME^targetLIKEDIALOG : 5 min^sid='+data.system);
 		getData.setLimit(10);
 		getData.orderByDesc('sys_created_on');
 		getData.query();
@@ -69,7 +69,7 @@
         <sys_created_on>2017-03-27 13:22:53</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>99b341c137b1f680806457d543990eb9</sys_id>
-        <sys_mod_count>54</sys_mod_count>
+        <sys_mod_count>57</sys_mod_count>
         <sys_name>AngCharts ResponseTime</sys_name>
         <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
         <sys_policy/>
@@ -77,7 +77,7 @@
         <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
         <sys_update_name>sp_widget_99b341c137b1f680806457d543990eb9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-07-07 09:32:43</sys_updated_on>
+        <sys_updated_on>2017-08-23 09:27:58</sys_updated_on>
         <template><![CDATA[<canvas id="myChart" width="300" height="300"/> </canvas>
 ]]></template>
     </sp_widget>

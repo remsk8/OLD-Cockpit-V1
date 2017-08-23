@@ -20,17 +20,7 @@
         <element label="Name" max_length="100" name="name" type="string"/>
         <element label="SampleMax" max_length="100" name="samplemax" type="string"/>
         <element label="SampleRate" max_length="100" name="samplerate" type="string"/>
-        <element choice="3" default="Empty" label="Sid" max_length="100" name="sid" type="choice">
-            <choice>
-                <element label="BWP" value="BWP"/>
-                <element label="HDB" value="HDB"/>
-                <element label="ID2" value="ID2"/>
-                <element label="PCP" value="PCP"/>
-                <element label="S4H" value="S4H"/>
-                <element label="QAS" sequence="0" value="QAS"/>
-                <element label="ECT" sequence="1" value="ECT"/>
-            </choice>
-        </element>
+        <element label="Sid" max_length="40" name="sid" type="string"/>
         <element label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
         <element label="Domain Path" max_length="255" name="sys_domain_path" type="domain_path"/>
         <element label="Target" max_length="100" name="target" type="string"/>

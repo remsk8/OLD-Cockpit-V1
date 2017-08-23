@@ -11,7 +11,7 @@
 			//labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange","sadf","rtert"],
 			labels: c.data.myDate2,
 			datasets: [{
-					label: 'Current Active USers',
+					label: 'Current Active Users',
 					data: c.data.myValue2,
 					fill: false,
 					borderColor: '#c71f3b',
@@ -51,8 +51,8 @@
 		data.system = $sp.getParameter('system');
 		data.myValue2=[];
 		data.myDate2=[];
-		var getData2=new GlideRecord('x_agsa_promonitor_metrics')
-		getData2.addEncodedQuery('name=USERS_ACTIVE_COUNT^sid='+data.system);
+		var getData2=new GlideRecord('x_agsa_promonitor_metrics');
+		getData2.addEncodedQuery('name=USERS_ACTIVE_COUNT^target=*^sid='+data.system);
 		getData2.orderByDesc('sys_created_on');
 		getData2.setLimit(30);
 		getData2.query();
@@ -69,7 +69,7 @@
         <sys_created_on>2017-03-28 08:00:10</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>d493c19937b5f680806457d543990e25</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>AngCharts ConnectedUsers</sys_name>
         <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
         <sys_policy/>
@@ -77,7 +77,7 @@
         <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
         <sys_update_name>sp_widget_d493c19937b5f680806457d543990e25</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-05-05 08:26:28</sys_updated_on>
+        <sys_updated_on>2017-08-23 09:29:16</sys_updated_on>
         <template><![CDATA[<canvas id="myChart2" width="300" height="300"/>
 Connected users]]></template>
     </sp_widget>
