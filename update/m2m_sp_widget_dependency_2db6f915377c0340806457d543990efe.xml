@@ -2,20 +2,20 @@
 <record_update table="m2m_sp_widget_dependency">
     <m2m_sp_widget_dependency action="INSERT_OR_UPDATE">
         <sp_dependency display_value="charts">4e52294d37b1f680806457d543990e59</sp_dependency>
-        <sp_widget display_value="AngCharts Tblocked">a42dcf57dbe80f00c316f27eaf961900</sp_widget>
+        <sp_widget display_value="AngCharts HconnCount">29b67915377c0340806457d543990ec0</sp_widget>
         <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2017-08-18 16:01:44</sys_created_on>
+        <sys_created_on>2017-08-24 14:52:00</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>682dcf57dbe80f00c316f27eaf961902</sys_id>
+        <sys_id>2db6f915377c0340806457d543990efe</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name>charts.AngCharts Connected</sys_name>
+        <sys_name>charts.Copy of AngCharts Tblocked</sys_name>
         <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
-        <sys_update_name>m2m_sp_widget_dependency_682dcf57dbe80f00c316f27eaf961902</sys_update_name>
+        <sys_update_name>m2m_sp_widget_dependency_2db6f915377c0340806457d543990efe</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-08-18 16:01:44</sys_updated_on>
+        <sys_updated_on>2017-08-24 14:52:00</sys_updated_on>
     </m2m_sp_widget_dependency>
 </record_update>

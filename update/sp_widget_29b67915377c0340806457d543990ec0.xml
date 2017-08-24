@@ -11,7 +11,7 @@
 			//labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange","sadf","rtert"],
 			labels: c.data.myDate,
 			datasets: [{
-					label: 'TRANSACTION BLOCKED COUNT',
+					label: 'CONNECTION COUNT',
 					data: c.data.value,
 					fill: false,
 					borderColor: '#c71f3b',
@@ -38,10 +38,10 @@
         <docs/>
         <field_list/>
         <has_preview>true</has_preview>
-        <id>angcharts-connected</id>
+        <id>angchartshconncount</id>
         <internal>false</internal>
         <link/>
-        <name>AngCharts Tblocked</name>
+        <name>AngCharts HconnCount</name>
         <option_schema/>
         <public>false</public>
         <roles/>
@@ -52,7 +52,7 @@
 		data.value=[];
 		data.myDate=[];
 		var getData=new GlideRecord('x_agsa_promonitor_metrics');
-		getData.addEncodedQuery('name=TRANSACTIONS_BLOCKED_COUNT^sid='+data.system);
+		getData.addEncodedQuery('name=CONNECTIONS_COUNT^sid='+data.system);
 		getData.setLimit(10);
 		getData.orderByDesc('sys_created_on');
 		getData.query();
@@ -66,18 +66,18 @@
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2017-08-18 16:01:44</sys_created_on>
+        <sys_created_on>2017-08-24 14:52:00</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>a42dcf57dbe80f00c316f27eaf961900</sys_id>
-        <sys_mod_count>7</sys_mod_count>
-        <sys_name>AngCharts Tblocked</sys_name>
+        <sys_id>29b67915377c0340806457d543990ec0</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>AngCharts HconnCount</sys_name>
         <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
-        <sys_update_name>sp_widget_a42dcf57dbe80f00c316f27eaf961900</sys_update_name>
+        <sys_update_name>sp_widget_29b67915377c0340806457d543990ec0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-08-24 15:11:41</sys_updated_on>
+        <sys_updated_on>2017-08-24 15:01:04</sys_updated_on>
         <template><![CDATA[<canvas id="myChart2" width="300" height="300"/> </canvas>
 ]]></template>
     </sp_widget>

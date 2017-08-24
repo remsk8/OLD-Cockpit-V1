@@ -32,7 +32,7 @@
 	syst.orderBy('company');
 	syst.query();
 	while(syst.next()) {
-	system.push(syst.sid.toString()+'àààà'+syst.operational_status.getDisplayValue().toString()+'àààà'+syst.company.name.toString()+'àààà'+syst.type.toString());
+	system.push(syst.sid.toString()+'àààà'+syst.operational_status.getDisplayValue().toString()+'àààà'+syst.company.name.toString()+'àààà'+syst.type.toString()+'àààà'+syst.sys_id.toString()+'àààà'+syst.company.toString());
 	}
 
 	// Now For each system, we need company, operational status, action, worst alarm severity
@@ -48,7 +48,9 @@
 		obj.status=system[i].split('àààà')[1].toString();
 		obj.company=system[i].split('àààà')[2].toString();
 		obj.type=system[i].split('àààà')[3].toString();
+		obj.sysid=system[i].split('àààà')[4].toString();
 		obj.severity=getSev.severity.toString();
+		obj.compsysid=system[i].split('àààà')[5].toString()
 		// Get Last Alarm
 		var lastUpd = new GlideRecord("x_agsa_promonitor_alarms");
 		lastUpd.addQuery('sid.sid',system[i].split('àààà')[0]);
@@ -91,7 +93,7 @@
         <sys_created_on>2017-01-20 11:08:51</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>6d1c68bfdb14f600c316f27eaf96194f</sys_id>
-        <sys_mod_count>59</sys_mod_count>
+        <sys_mod_count>65</sys_mod_count>
         <sys_name>System Overview</sys_name>
         <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
         <sys_policy/>
@@ -99,7 +101,7 @@
         <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
         <sys_update_name>sp_widget_6d1c68bfdb14f600c316f27eaf96194f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-08-22 16:08:38</sys_updated_on>
+        <sys_updated_on>2017-08-24 14:27:44</sys_updated_on>
         <template><![CDATA[<link href="c61202770fe32200a09d8bbce1050e0a.cssdbx?" rel="stylesheet" type="text/css" />
 <table class='sstatus' sytle='width:30%;'>
 	<thead>
@@ -114,9 +116,10 @@
 		</tr>
 	</thead>  
 	<tr ng-repeat="item in data.list | orderBy:sortType:sortReverse | filter:searchAlarm">
-		<td class="sstatus"><a ng-href="pm?id=systemview&system={{item.sid}}" target="_blank">{{item.sid}}</a> </td>
+		<td class="sstatus"><a ng-href="/nav_to.do?uri=/cmdb_ci_appl_sap_system.do?sys_id={{item.sysid}}&sysparm_view=sapsystems&sysparm_record_target=cmdb_ci_appl_sap_system&sysparm_record_row=6&sysparm_record_rows=7&sysparm_record_list=ORDERBYname
+" target="_blank">{{item.sid}}</a> </td>
  		<td class="sstatus">{{item.type}}</td>
- 		<td class="sstatus"><a style='color:lightblue;' href="pm?id=companyview&company={{item.company}}" target="_blanck">{{item.company}}</a></td>
+ 		<td class="sstatus" style='color:lightblue;' >{{item.company}}</td>
  		<td class="sstatus">{{item.status}}</td>
 		<td class="sstatus" ng-if='item.type == "NETWEAVER"' ><a style='color:lightblue;' href="pm?id=detailview&system={{item.sid}}&company={{item.company}}">Detail View</a></td>
    		<td class="sstatus" ng-if='item.type == "HANA"' ><a style='color:lightblue;' href="pm?id=hanaview&system={{item.sid}}&company={{item.company}}">Detail View</a></td>

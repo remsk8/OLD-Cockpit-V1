@@ -11,7 +11,7 @@
         <chart_border_radius>0</chart_border_radius>
         <chart_border_width>1</chart_border_width>
         <chart_height/>
-        <chart_size>large</chart_size>
+        <chart_size>medium</chart_size>
         <chart_title/>
         <chart_title_color display_value="Black">65b30218a9fe3dba0120df8611520d97</chart_title_color>
         <chart_title_size>16</chart_title_size>
@@ -94,7 +94,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>b9e8082937936200806457d543990e17</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>SAP Alarm count by Module</sys_name>
         <sys_overrides/>
         <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
@@ -103,7 +103,7 @@
         <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
         <sys_update_name>sys_report_b9e8082937936200806457d543990e17</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2016-11-24 16:03:53</sys_updated_on>
+        <sys_updated_on>2017-08-24 13:27:41</sys_updated_on>
         <table>x_agsa_promonitor_alarms</table>
         <title>SAP Alarm count by Module</title>
         <title_horizontal_alignment>center</title_horizontal_alignment>
