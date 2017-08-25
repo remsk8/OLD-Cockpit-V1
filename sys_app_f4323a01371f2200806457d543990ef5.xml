@@ -23,14 +23,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2016-11-23 14:48:05</sys_created_on>
         <sys_id>f4323a01371f2200806457d543990ef5</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-08-22 09:08:47</sys_updated_on>
+        <sys_updated_on>2017-08-25 15:30:35</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <user_role display_value="x_agsa_promonitor.user" name="x_agsa_promonitor.user">74327a01371f2200806457d543990ea3</user_role>
         <vendor/>
         <vendor_prefix/>
-        <version>2.0.0</version>
+        <version>2.0.1</version>
     </sys_app>
 </record_update>
