@@ -23,6 +23,8 @@
         <script><![CDATA[(function() {
   /* populate the 'data' object */
   /* e.g., data.table = $sp.getValue('table'); */
+	gs.include('ProMonitorLib');
+	var promon=new ProMonitorLib();
 	obj={};
 	data.list=[];
 	alamCL=[];
@@ -31,70 +33,25 @@
 	// First Get Alarm info
 
 	for (var i=0;i<2;i++) {
-		 alamCL.push(parseInt(getCount(i,system)));
+		 alamCL.push(parseInt(promon.getCount(i,system)));
 	}
 	alamRS=alamCL[0].toString();
 	obj.unit='Alarm Count Today';
-	var avg=average(alamCL);
-	var v=standardDeviation(alamCL).toFixed(0)
+	var avg=promon.average(alamCL);
+	var v=promon.standardDeviation(alamCL).toFixed(0);
 	var cv=(v/avg*100).toFixed(1);
-	alamRS=alamRS+' (RSD for 2 days : '+cv+') LIMIT at 250'
+	alamRS=alamRS+' (RSD '+cv+' % on 2d)';
 	alamCL.push(cv);
-	alamCL.push(avg)
+	alamCL.push(avg);
 	alamCL.push(v);
 	obj.target=alamRS;
 	obj.value='true';
 	data.list.push(obj);
 	obj={};		
 	
-	// Get status infos
-	var getStatusInf=new GlideRecord('x_agsa_promonitor_last_metrics');
-	getStatusInf.addEncodedQuery('value=true^ORvalue=false');
-	getStatusInf.addQuery('sid',system);
-	getStatusInf.query();
-	while (getStatusInf.next()) {
-		obj.unit=getStatusInf.unit.toString();
-		obj.target=getStatusInf.target.toString();
-		obj.value=getStatusInf.value.toString();
-		data.list.push(obj);
-		obj={};
-	}
-	
-	
-	/// 
-		function standardDeviation(values){
-		var avg = average(values);		
-		var squareDiffs = values.map(function(value){
-			var diff = value - avg;
-			var sqrDiff = diff * diff;
-			return sqrDiff;
-		});
-		var avgSquareDiff = average(squareDiffs);
-		var stdDev = Math.sqrt(avgSquareDiff);
-		return stdDev;
-	}
-	
-	function average(data){
-		var sum = data.reduce(function(sum, value){
-			return sum + value;
-		}, 0);
-		var avg = sum / data.length;
-		return avg;
-	}
-	
-	function getCount(days,sid) {
-		var count = new GlideAggregate('x_agsa_promonitor_alarms');
-		if (sid != '') {
-				count.addQuery('sid.sid',sid);
-		}
-		count.addQuery('sys_updated_on', '>', gs.daysAgoStart(days));
-		count.addQuery('sys_updated_on', '<', gs.daysAgoEnd(days));
-		count.addQuery('acknowledge','false');
-		count.addAggregate('COUNT');
-		count.query();
-		count.next();
-		return count.getAggregate('COUNT');
-	}
+	data.list.push(promon.returnInfo('Service Status','ALL','SERVICE_STATUS',system));
+	data.list.push(promon.returnInfo('NODE Availability','ALL','NODE_AVAILABILITY',system));
+
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
@@ -102,16 +59,18 @@
         <sys_created_on>2017-08-23 13:32:20</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>bcea584d37b00340806457d543990e6e</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>26</sys_mod_count>
         <sys_name>AngStatusWidgetH</sys_name>
         <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
         <sys_update_name>sp_widget_bcea584d37b00340806457d543990e6e</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-08-23 13:56:24</sys_updated_on>
-        <template><![CDATA[<link href="6b0a92993739f680806457d543990e63.cssdbx?" rel="stylesheet" type="text/css" />
+        <sys_updated_by>admin2</sys_updated_by>
+        <sys_updated_on>2017-08-25 14:37:00</sys_updated_on>
+        <template><![CDATA[<br>
+<br>
+<link href="6b0a92993739f680806457d543990e63.cssdbx?" rel="stylesheet" type="text/css" />
 <table class='sstatus' sytle='width:30%;'>
 	<thead>
 		<tr>
@@ -121,10 +80,10 @@
 		</tr>
 	</thead>
 	<tr ng-repeat="item in data.list | orderBy:sortType:sortReverse | filter:searchAlarm">
-		<td class="sstatus"><a href="x_agsa_promonitor_last_metrics_list.do?sysparm_query=unit={{item.unit}}^target={{item.target}}^sid={{item.sid}}" target="_blanck">{{item.unit}}</a> </td>
+		<td class="sstatus"><a href="{{item.url}}" target="_blanck">{{item.unit}}</a> </td>
  		<td class="sstatus">{{item.target}}</td>
 		<td class="sstatus" ng-if='item.value == "true"' style='background-color:#3bc999;'>CHECK OK</td>
-		<td class="sstatus" ng-if='item.vakue == "false"' style='background-color:#c71f3b;'>CHECK FAILED</td>
+		<td class="sstatus" ng-if='item.value == "false"' style='background-color:#c71f3b;'>CHECK FAILED</td>
   </tr>
 </table>
 ]]></template>

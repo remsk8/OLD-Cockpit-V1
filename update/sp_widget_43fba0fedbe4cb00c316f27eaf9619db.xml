@@ -23,23 +23,25 @@
         <script><![CDATA[(function() {
   /* populate the 'data' object */
   /* e.g., data.table = $sp.getValue('table'); */
+  gs.include('ProMonitorLib');
+  var promon=new ProMonitorLib();
+
 	obj={};
 	data.list=[];
 	alamCL=[];
 	alamRS='';
-	//system=$sp.getParameter('system');
-	system='ID2'
+	system=$sp.getParameter('system');
 	// First Get Alarm info
 
 	for (var i=0;i<2;i++) {
-		 alamCL.push(parseInt(getCount(i,system)));
+		 alamCL.push(parseInt(promon.getCount(i,system)));
 	}
 	alamRS=alamCL[0].toString();
 	obj.unit='Alarm Count Today';
-	var avg=average(alamCL);
-	var v=standardDeviation(alamCL).toFixed(0)
+	var avg=promon.average(alamCL);
+	var v=promon.standardDeviation(alamCL).toFixed(0)
 	var cv=(v/avg*100).toFixed(1);
-	alamRS=alamRS+' (RSD for 2 days : '+cv+') LIMIT at 250'
+	alamRS=alamRS+' (RSD for 2 days : '+cv+')'
 	alamCL.push(cv);
 	alamCL.push(avg)
 	alamCL.push(v);
@@ -47,104 +49,11 @@
 	obj.value='true';
 	data.list.push(obj);
 	obj={};		
-
-	// Get status infos about availability
-	var getStatusInf=new GlideAggregate('x_agsa_promonitor_last_metrics');
-	getStatusInf.addEncodedQuery('name=INSTANCE_AVAILABILITY^value=true');
-	getStatusInf.addQuery('sid',system);
-	getStatusInf.addAggregate('COUNT');
-	getStatusInf.query();
-	if (getStatusInf.next()) {
-		if (getStatusInf.getAggregate('COUNT') =='0') {
-			obj.value='false';
-		} else {
-			obj.value='true';
-		}
-	}
-	obj.unit='System Availability';
-	obj.target='ALL';
-	data.list.push(obj);
-	obj={};
 	
-	// Get Jobs status
-	var getJStatus=new GlideAggregate('x_agsa_promonitor_last_metrics');
-	getJStatus.addEncodedQuery('name=SAPJOBS_STATUS');
-	getJStatus.addQuery('sid',system);
-	getJStatus.addAggregate('COUNT');
-	getJStatus.query();
-	if (getJStatus.next()) {
-		if (getJStatus.getAggregate('COUNT') =='0') {
-			obj.value='false';
-		} else {
-			obj.value='true';
-		}
-	}
-	obj.unit='JOBS Global Status';
-	obj.target='ALL';
-	data.list.push(obj);
-	obj={};
-		
-	// Get transaction status
-	var gettStatus=new GlideAggregate('x_agsa_promonitor_last_metrics');
-	gettStatus.addEncodedQuery('name=SAPJOBS_STATUS');
-	gettStatus.addQuery('sid',system);
-	gettStatus.addAggregate('COUNT');
-	gettStatus.query();
-	if (gettStatus.next()) {
-		if (gettStatus.getAggregate('COUNT') =='0') {
-			obj.value='false';
-		} else {
-			obj.value='true';
-		}
-	}
-	obj.unit='TRANSACTION Global Status';
-	obj.target='ALL';
-	data.list.push(obj);
-	obj={};
+	data.list.push(promon.returnInfo('System Availability','ALL','SYSTEM_AVAILABILITY',system));
+	data.list.push(promon.returnInfo('Instance Availability Status','ALL','INSTANCE_AVAILABILITY',system));
+	data.list.push(promon.returnInfo('JOBS Global Status','ALL','SAPJOBS_STATUS',system));
 	
-	obj.value='true';
-	obj.unit='SHORTDUMP Status';
-	obj.target='Last count : 1';
-	data.list.push(obj);
-	obj={};
-	
-	
-	
-	// Get status info 
-	/// 
-		function standardDeviation(values){
-		var avg = average(values);		
-		var squareDiffs = values.map(function(value){
-			var diff = value - avg;
-			var sqrDiff = diff * diff;
-			return sqrDiff;
-		});
-		var avgSquareDiff = average(squareDiffs);
-		var stdDev = Math.sqrt(avgSquareDiff);
-		return stdDev;
-	}
-	
-	function average(data){
-		var sum = data.reduce(function(sum, value){
-			return sum + value;
-		}, 0);
-		var avg = sum / data.length;
-		return avg;
-	}
-	
-	function getCount(days,sid) {
-		var count = new GlideAggregate('x_agsa_promonitor_alarms');
-		if (sid != '') {
-				count.addQuery('sid.sid',sid);
-		}
-		count.addQuery('sys_updated_on', '>', gs.daysAgoStart(days));
-		count.addQuery('sys_updated_on', '<', gs.daysAgoEnd(days));
-		count.addQuery('acknowledge','false');
-		count.addAggregate('COUNT');
-		count.query();
-		count.next();
-		return count.getAggregate('COUNT');
-	}
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
@@ -152,7 +61,7 @@
         <sys_created_on>2017-08-16 15:00:42</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>43fba0fedbe4cb00c316f27eaf9619db</sys_id>
-        <sys_mod_count>92</sys_mod_count>
+        <sys_mod_count>118</sys_mod_count>
         <sys_name>AngStatusWidgetNW</sys_name>
         <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
         <sys_policy/>
@@ -160,7 +69,7 @@
         <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
         <sys_update_name>sp_widget_43fba0fedbe4cb00c316f27eaf9619db</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-08-24 14:24:04</sys_updated_on>
+        <sys_updated_on>2017-08-25 14:33:06</sys_updated_on>
         <template><![CDATA[<br>
 <br>
 <link href="6b0a92993739f680806457d543990e63.cssdbx?" rel="stylesheet" type="text/css" />
@@ -173,7 +82,7 @@
 		</tr>
 	</thead>
 	<tr ng-repeat="item in data.list | orderBy:sortType:sortReverse | filter:searchAlarm">
-		<td class="sstatus"><a href="x_agsa_promonitor_last_metrics_list.do?sysparm_query=unit={{item.unit}}^target={{item.target}}^sid={{item.sid}}" target="_blanck">{{item.unit}}</a> </td>
+		<td class="sstatus"><a href="{{item.url}}" target="_blanck">{{item.unit}}</a> </td>
  		<td class="sstatus">{{item.target}}</td>
 		<td class="sstatus" ng-if='item.value == "true"' style='background-color:#3bc999;'>CHECK OK</td>
 		<td class="sstatus" ng-if='item.value == "false"' style='background-color:#c71f3b;'>CHECK FAILED</td>

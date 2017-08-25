@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update sys_domain="global" table="sys_app_module">
     <sys_app_module action="INSERT_OR_UPDATE">
-        <active>true</active>
+        <active>false</active>
         <application display_value="ProMonitor">3c327a01371f2200806457d543990ea2</application>
         <assessment/>
         <content_page/>
@@ -29,7 +29,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>faa3c6770fe32200a09d8bbce1050e6e</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Weekly Job Report</sys_name>
         <sys_overrides/>
         <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
@@ -38,7 +38,7 @@
         <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
         <sys_update_name>sys_app_module_faa3c6770fe32200a09d8bbce1050e6e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2016-12-21 15:48:11</sys_updated_on>
+        <sys_updated_on>2017-08-25 12:26:21</sys_updated_on>
         <timeline_page/>
         <title>Weekly Job Report</title>
         <uncancelable>false</uncancelable>
