@@ -64,12 +64,12 @@
             <sys_domain_path>/</sys_domain_path>
             <sys_id>b3568d6f37b07240806457d543990ee0</sys_id>
             <sys_mod_count>0</sys_mod_count>
-            <sys_name/>
-            <sys_package/>
+            <sys_name>content_block_programmatic</sys_name>
+            <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
             <sys_policy/>
             <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
             <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
-            <sys_update_name/>
+            <sys_update_name>sys_ui_list_content_block_programmatic_null</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2017-02-13 14:55:59</sys_updated_on>
             <sys_user display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</sys_user>

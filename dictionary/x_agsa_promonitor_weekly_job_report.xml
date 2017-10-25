@@ -20,10 +20,10 @@
             <element name="connector"/>
         </index>
         <index name="index3">
-            <element name="sys_domain_path"/>
+            <element name="sys_domain"/>
         </index>
         <index name="index4">
-            <element name="sys_domain"/>
+            <element name="sys_domain_path"/>
         </index>
     </element>
 </database>

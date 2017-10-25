@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_form_sections form_id="1b996419db060340c316f27eaf96199c" sys_domain="global" table="x_agsa_promonitor_alarms" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>system</sys_created_by>
+            <sys_created_on>2017-10-25 12:33:38</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>53996419db060340c316f27eaf96199d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_agsa_promonitor_alarms" name="x_agsa_promonitor_alarms" sys_domain="global" view="Default view">1b996419db060340c316f27eaf96199c</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_promonitor_alarms" sys_domain="global" view="Default view">1505f19737acfa00806457d543990ea5</sys_ui_section>
+            <sys_updated_by>system</sys_updated_by>
+            <sys_updated_on>2017-10-25 12:33:38</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>system</sys_created_by>
+            <sys_created_on>2017-10-25 12:33:38</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1f996419db060340c316f27eaf96199d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_agsa_promonitor_alarms" name="x_agsa_promonitor_alarms" sys_domain="global" view="Default view">1b996419db060340c316f27eaf96199c</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_promonitor_alarms" sys_domain="d0998e77dbf07240c316f27eaf961914" view="Default view">2ac85130db41f240c316f27eaf9619eb</sys_ui_section>
+            <sys_updated_by>system</sys_updated_by>
+            <sys_updated_on>2017-10-25 12:33:38</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>system</sys_created_by>
+            <sys_created_on>2017-10-25 12:33:38</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d3996419db060340c316f27eaf9619e4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_agsa_promonitor_alarms" name="x_agsa_promonitor_alarms" sys_domain="global" view="Default view">1b996419db060340c316f27eaf96199c</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_promonitor_alarms" sys_domain="03f78309371f2200806457d543990eec" view="Default view">8d397dd737acfa00806457d543990e81</sys_ui_section>
+            <sys_updated_by>system</sys_updated_by>
+            <sys_updated_on>2017-10-25 12:33:38</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>3</position>
+            <sys_created_by>system</sys_created_by>
+            <sys_created_on>2017-10-25 12:33:40</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>3799a419db060340c316f27eaf961960</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_agsa_promonitor_alarms" name="x_agsa_promonitor_alarms" sys_domain="global" view="Default view">1b996419db060340c316f27eaf96199c</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_promonitor_alarms" sys_domain="e58caa9b379fe200806457d543990e08" view="Default view">daa4fd5737acfa00806457d543990e38</sys_ui_section>
+            <sys_updated_by>system</sys_updated_by>
+            <sys_updated_on>2017-10-25 12:33:40</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_agsa_promonitor_alarms</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>system</sys_created_by>
+            <sys_created_on>2017-10-25 12:33:38</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1b996419db060340c316f27eaf96199c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_agsa_promonitor_alarms</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+            <sys_update_name>sys_ui_form_sections_1b996419db060340c316f27eaf96199c</sys_update_name>
+            <sys_updated_by>system</sys_updated_by>
+            <sys_updated_on>2017-10-25 12:33:38</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

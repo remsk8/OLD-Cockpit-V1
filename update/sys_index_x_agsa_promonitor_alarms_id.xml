@@ -2,7 +2,7 @@
 <record_update table="sys_index">
     <sys_index action="INSERT_OR_UPDATE">
         <col_name_string>id</col_name_string>
-        <index_col_name element="id" name="x_agsa_promonitor_alarms">5fd38f45371f2200806457d543990ec3</index_col_name>
+        <index_col_name>5fd38f45371f2200806457d543990ec3</index_col_name>
         <logical_table_name>x_agsa_promonitor_alarms</logical_table_name>
         <sys_class_name>sys_index</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -18,7 +18,7 @@
         <sys_update_name>sys_index_x_agsa_promonitor_alarms_id</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2016-11-23 16:48:08</sys_updated_on>
-        <table display_value="Alarms" name="x_agsa_promonitor_alarms">189bbec1371f2200806457d543990efa</table>
+        <table/>
         <unique_index>false</unique_index>
     </sys_index>
 </record_update>

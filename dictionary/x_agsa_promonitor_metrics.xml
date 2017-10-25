@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <element label="Metrics" max_length="40" name="x_agsa_promonitor_metrics" sizeclass="32303" type="collection">
+    <element label="Metrics" max_length="40" name="x_agsa_promonitor_metrics" type="collection">
         <element label="Client" max_length="100" name="client" type="string"/>
         <element label="ConfigId" max_length="100" name="configid" type="string"/>
         <element label="ConnectorId" max_length="40" name="connectorid" type="string"/>
@@ -30,17 +30,17 @@
         <element label="User" max_length="50" name="user" type="string"/>
         <element label="Value" max_length="50" name="value" type="string"/>
         <index name="index">
-            <element name="sys_domain_path"/>
-        </index>
-        <index name="index2">
             <element name="sys_created_on"/>
             <element name="data"/>
             <element name="name"/>
             <element name="target"/>
             <element name="value"/>
         </index>
-        <index name="index3">
+        <index name="index2">
             <element name="sys_domain"/>
+        </index>
+        <index name="index3">
+            <element name="sys_domain_path"/>
         </index>
     </element>
 </database>

@@ -1,96 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update>
     <sys_ui_list parent="" relationship="" sys_domain="global" table="sys_user" version="2" view="">
-        <sys_ui_list_element action="INSERT_OR_UPDATE">
-            <average_value>false</average_value>
-            <element>user_name</element>
-            <list_id display_value="sys_user" element="NULL" name="sys_user" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">c239e85037500300806457d543990e45</list_id>
-            <max_value>false</max_value>
-            <min_value>false</min_value>
-            <position>0</position>
-            <sum>false</sum>
-            <sys_created_by>system</sys_created_by>
-            <sys_created_on>2017-07-27 10:08:07</sys_created_on>
-            <sys_id>4639e85037500300806457d543990e45</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>system</sys_updated_by>
-            <sys_updated_on>2017-07-27 10:08:07</sys_updated_on>
-        </sys_ui_list_element>
-        <sys_ui_list_element action="INSERT_OR_UPDATE">
-            <average_value>false</average_value>
-            <element>name</element>
-            <list_id display_value="sys_user" element="NULL" name="sys_user" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">c239e85037500300806457d543990e45</list_id>
-            <max_value>false</max_value>
-            <min_value>false</min_value>
-            <position>1</position>
-            <sum>false</sum>
-            <sys_created_by>system</sys_created_by>
-            <sys_created_on>2017-07-27 10:08:07</sys_created_on>
-            <sys_id>c639e85037500300806457d543990e45</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>system</sys_updated_by>
-            <sys_updated_on>2017-07-27 10:08:07</sys_updated_on>
-        </sys_ui_list_element>
-        <sys_ui_list_element action="INSERT_OR_UPDATE">
-            <average_value>false</average_value>
-            <element>roles</element>
-            <list_id display_value="sys_user" element="NULL" name="sys_user" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">c239e85037500300806457d543990e45</list_id>
-            <max_value>false</max_value>
-            <min_value>false</min_value>
-            <position>2</position>
-            <sum>false</sum>
-            <sys_created_by>system</sys_created_by>
-            <sys_created_on>2017-07-27 10:08:07</sys_created_on>
-            <sys_id>4a39e85037500300806457d543990e45</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>system</sys_updated_by>
-            <sys_updated_on>2017-07-27 10:08:07</sys_updated_on>
-        </sys_ui_list_element>
-        <sys_ui_list_element action="INSERT_OR_UPDATE">
-            <average_value>false</average_value>
-            <element>email</element>
-            <list_id display_value="sys_user" element="NULL" name="sys_user" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">c239e85037500300806457d543990e45</list_id>
-            <max_value>false</max_value>
-            <min_value>false</min_value>
-            <position>3</position>
-            <sum>false</sum>
-            <sys_created_by>system</sys_created_by>
-            <sys_created_on>2017-07-27 10:08:07</sys_created_on>
-            <sys_id>ca39e85037500300806457d543990e45</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>system</sys_updated_by>
-            <sys_updated_on>2017-07-27 10:08:07</sys_updated_on>
-        </sys_ui_list_element>
-        <sys_ui_list_element action="INSERT_OR_UPDATE">
-            <average_value>false</average_value>
-            <element>sys_created_on</element>
-            <list_id display_value="sys_user" element="NULL" name="sys_user" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">c239e85037500300806457d543990e45</list_id>
-            <max_value>false</max_value>
-            <min_value>false</min_value>
-            <position>4</position>
-            <sum>false</sum>
-            <sys_created_by>system</sys_created_by>
-            <sys_created_on>2017-07-27 10:08:07</sys_created_on>
-            <sys_id>4e39e85037500300806457d543990e45</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>system</sys_updated_by>
-            <sys_updated_on>2017-07-27 10:08:07</sys_updated_on>
-        </sys_ui_list_element>
-        <sys_ui_list_element action="INSERT_OR_UPDATE">
-            <average_value>false</average_value>
-            <element>active</element>
-            <list_id display_value="sys_user" element="NULL" name="sys_user" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">c239e85037500300806457d543990e45</list_id>
-            <max_value>false</max_value>
-            <min_value>false</min_value>
-            <position>5</position>
-            <sum>false</sum>
-            <sys_created_by>system</sys_created_by>
-            <sys_created_on>2017-07-27 10:08:07</sys_created_on>
-            <sys_id>ce39e85037500300806457d543990e45</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>system</sys_updated_by>
-            <sys_updated_on>2017-07-27 10:08:07</sys_updated_on>
-        </sys_ui_list_element>
         <sys_ui_list action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element/>
@@ -109,12 +19,12 @@
             <sys_domain_path>/</sys_domain_path>
             <sys_id>4da6155537a2b6c0806457d543990e45</sys_id>
             <sys_mod_count>0</sys_mod_count>
-            <sys_name/>
-            <sys_package/>
+            <sys_name>sys_user</sys_name>
+            <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
             <sys_policy/>
             <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
             <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
-            <sys_update_name/>
+            <sys_update_name>sys_ui_list_sys_user_null</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2017-05-04 16:10:36</sys_updated_on>
             <sys_user display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</sys_user>

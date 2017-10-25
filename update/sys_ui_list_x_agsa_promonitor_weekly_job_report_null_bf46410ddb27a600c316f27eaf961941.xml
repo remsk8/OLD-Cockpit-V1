@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="0b55ffed37d76200806457d543990e28" table="x_agsa_promonitor_weekly_job_report" version="2" view="">
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_agsa_promonitor_weekly_job_report</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-12-05 17:12:24</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>0b55ffed37d76200806457d543990e28</sys_domain>
+            <sys_domain_path>!!$/</sys_domain_path>
+            <sys_id>bf46410ddb27a600c316f27eaf961941</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_agsa_promonitor_weekly_job_report</sys_name>
+            <sys_package display_value="ProMonitor" source="x_agsa_promonitor">f4323a01371f2200806457d543990ef5</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="ProMonitor">f4323a01371f2200806457d543990ef5</sys_scope>
+            <sys_update_name>sys_ui_list_x_agsa_promonitor_weekly_job_report_null_bf46410ddb27a600c316f27eaf961941</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-12-05 17:12:24</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

@@ -12,10 +12,10 @@
         <element label="Target" max_length="100" name="target" type="string"/>
         <element label="Value" max_length="50" name="value" type="string"/>
         <index name="index">
-            <element name="sys_domain_path"/>
+            <element name="sys_domain"/>
         </index>
         <index name="index2">
-            <element name="sys_domain"/>
+            <element name="sys_domain_path"/>
         </index>
     </element>
 </database>

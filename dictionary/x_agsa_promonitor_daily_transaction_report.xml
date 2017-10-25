@@ -12,16 +12,16 @@
         <element label="Domain Path" max_length="255" name="sys_domain_path" type="domain_path"/>
         <element label="Transaction" max_length="50" name="transaction" type="string"/>
         <index name="index">
-            <element name="sys_domain_path"/>
-        </index>
-        <index name="index2">
             <element name="system"/>
         </index>
-        <index name="index3">
+        <index name="index2">
             <element name="connector"/>
         </index>
-        <index name="index4">
+        <index name="index3">
             <element name="sys_domain"/>
+        </index>
+        <index name="index4">
+            <element name="sys_domain_path"/>
         </index>
     </element>
 </database>

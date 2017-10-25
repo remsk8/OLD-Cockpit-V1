@@ -2,7 +2,7 @@
 <record_update table="sys_index">
     <sys_index action="INSERT_OR_UPDATE">
         <col_name_string>generationdate</col_name_string>
-        <index_col_name element="generationdate" name="x_agsa_promonitor_daily_job_report">aef76953375fe200806457d543990e45</index_col_name>
+        <index_col_name>aef76953375fe200806457d543990e45</index_col_name>
         <logical_table_name>x_agsa_promonitor_daily_job_report</logical_table_name>
         <sys_class_name>sys_index</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -18,7 +18,7 @@
         <sys_update_name>sys_index_x_agsa_promonitor_daily_job_report_generationdate</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2016-12-20 10:42:58</sys_updated_on>
-        <table display_value="Daily Job Report" name="x_agsa_promonitor_daily_job_report">e11d24cf3797e200806457d543990ea2</table>
+        <table/>
         <unique_index>false</unique_index>
     </sys_index>
 </record_update>

@@ -15,13 +15,16 @@
             <element name="system"/>
         </index>
         <index name="index2">
-            <element name="sys_domain"/>
+            <element name="connector"/>
         </index>
         <index name="index3">
-            <element name="sys_domain_path"/>
+            <element name="sys_domain"/>
         </index>
         <index name="index4">
             <element name="generationdate"/>
+        </index>
+        <index name="index5">
+            <element name="sys_domain_path"/>
         </index>
     </element>
 </database>

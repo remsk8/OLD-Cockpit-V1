@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<database>
-    <element audit="true" extends="cmdb_ci_appl_sap" label="SAP SCS Application" max_length="40" name="cmdb_ci_appl_sap_scs" type="collection">
-        <element attributes="edge_encryption_enabled=true" label="Promonitor connectorid" max_length="40" name="x_agsa_promonitor_connectorid" type="string"/>
-        <element label="Promonitor sap system" max_length="32" name="x_agsa_promonitor_sap_system" reference="cmdb_ci_appl_sap_system" type="reference"/>
-        <element attributes="edge_encryption_enabled=true" label="Promonitor type" max_length="40" name="x_agsa_promonitor_type" type="string"/>
-    </element>
-</database>
